@@ -36,7 +36,7 @@
     padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
   .q-card .v-title{font-size:15.5px;font-weight:700}
   .q-card .v-loc{font-size:14px;font-weight:600;color:var(--blue);margin-top:2px;cursor:pointer}
-  .q-card .v-loc::after{content:' ›';font-weight:400}
+  .q-card .v-loc:active{opacity:.5}
   .q-card .v-time{font-size:12.5px;color:var(--sub);margin-top:3px}
   [data-nav]{cursor:pointer}
 
@@ -149,15 +149,17 @@
     <div class="q-card">
       <div class="v-title">邓紫棋《I AM GLORIA》演唱会</div>
       <div class="v-loc" data-nav="深圳大运中心体育场">大运中心体育场</div>
-      <div class="v-time">10.5 周一 · 19:00</div>
+      <div class="v-time">10.5 周一 19:00</div>
     </div>
     <div class="q-card">
-      <div class="v-title" data-nav="皇朝印象酒店龙岗中心大运新城店">皇朝印象酒店（龙岗中心大运新城店）›</div>
-      <div class="v-time">10.4 入住 · 10.6 退房</div>
+      <div class="v-title">皇朝印象酒店</div>
+      <div class="v-loc" data-nav="皇朝印象酒店龙岗中心大运新城店">龙岗中心大运新城店</div>
+      <div class="v-time">10.4 入住 10.6 退房</div>
     </div>
     <div class="q-card">
-      <div class="v-title">往返动车 · 深圳北 ⇄ 福建</div>
-      <div class="v-time">去 10.4 13:00 到 · 回 10.6 晚 · 已购票</div>
+      <div class="v-title">动车</div>
+      <div class="v-loc" data-nav="深圳北站">深圳北 ⇄ 福建</div>
+      <div class="v-time">已购票 去程 10.4 13:00 到 回程 10.6 晚</div>
     </div>
   </section>
 
