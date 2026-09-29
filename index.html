@@ -4,115 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#1a0b2e">
+<meta name="theme-color" content="#f5f5f7">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <title>深圳之旅 · 10.04–10.06</title>
 <style>
   :root{
-    --bg1:#1a0b2e; --bg2:#2d1b4e; --card:rgba(255,255,255,.07);
-    --card-b:rgba(255,255,255,.12); --txt:#f2ecff; --sub:#b9a8d9;
-    --accent:#b967ff; --gold:#ffd166; --green:#7ee8a2; --pink:#ff7eb6;
-    --line:rgba(255,255,255,.09);
+    --bg:#f5f5f7; --card:#ffffff; --line:#e8e8ed;
+    --txt:#1d1d1f; --sub:#86868b;
+    --blue:#0071e3; --blue-bg:#eaf3ff;
+    --green:#34c759; --green-bg:#eaf9ef;
+    --orange:#ff9500; --orange-bg:#fff4e0;
+    --purple:#af52de; --purple-bg:#f5ecfd;
   }
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
   body{
-    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-    background:linear-gradient(160deg,var(--bg1) 0%,var(--bg2) 60%,#22133f 100%);
-    color:var(--txt);min-height:100vh;line-height:1.65;padding-bottom:env(safe-area-inset-bottom);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.6;
+    padding-bottom:env(safe-area-inset-bottom);
   }
-  .wrap{max-width:640px;margin:0 auto;padding:0 18px 60px}
+  .wrap{max-width:640px;margin:0 auto;padding:0 16px 60px}
 
-  header{text-align:center;padding:44px 0 8px}
-  .badge{display:inline-block;font-size:12px;letter-spacing:3px;color:var(--gold);
-    border:1px solid rgba(255,209,102,.4);border-radius:999px;padding:4px 14px;margin-bottom:16px}
-  h1{font-size:30px;font-weight:700;letter-spacing:1px}
-  h1 small{display:block;font-size:14px;font-weight:400;color:var(--sub);margin-top:6px;letter-spacing:2px}
-  .head-deco{font-size:34px;margin-top:10px}
+  header{text-align:center;padding:42px 0 6px}
+  .badge{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2px;
+    color:var(--purple);background:var(--purple-bg);
+    border-radius:999px;padding:5px 14px;margin-bottom:14px}
+  h1{font-size:30px;font-weight:700;letter-spacing:.5px}
+  h1 small{display:block;font-size:14px;font-weight:400;color:var(--sub);margin-top:6px;letter-spacing:1px}
 
-  .quick{display:grid;grid-template-columns:1fr;gap:10px;margin:26px 0 8px}
-  .q-card{background:var(--card);border:1px solid var(--card-b);border-radius:16px;padding:14px 16px;backdrop-filter:blur(10px)}
-  .q-card .k{font-size:12px;color:var(--sub);margin-bottom:4px;letter-spacing:1px}
+  .quick{display:grid;grid-template-columns:1fr;gap:10px;margin:24px 0 8px}
+  .q-card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .q-card .k{font-size:12px;color:var(--sub);margin-bottom:4px}
   .q-card .v{font-size:15px;font-weight:600}
-  .q-card .v em{font-style:normal;color:var(--gold)}
+  .q-card .v em{font-style:normal;color:var(--blue)}
   .q-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
-  .day{margin-top:34px}
+  /* 打卡进度 */
+  .progress{position:sticky;top:8px;z-index:50;display:flex;align-items:center;gap:10px;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin:18px 0 4px;
+    box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .progress .p-label{font-size:12.5px;font-weight:600;white-space:nowrap}
+  .progress .p-label em{font-style:normal;color:var(--blue)}
+  .bar{flex:1;height:6px;border-radius:999px;background:var(--line);overflow:hidden}
+  .bar i{display:block;height:100%;width:0;border-radius:999px;
+    background:var(--blue);transition:width .4s ease}
+  .p-reset{flex-shrink:0;font-size:12px;color:var(--sub);background:none;border:1px solid var(--line);
+    border-radius:999px;padding:3px 12px;cursor:pointer}
+
+  .day{margin-top:30px}
   .day-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-  .day-num{flex-shrink:0;width:52px;height:52px;border-radius:14px;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent),var(--pink));
-    font-weight:700;box-shadow:0 4px 18px rgba(185,103,255,.35)}
-  .day-num b{font-size:20px;line-height:1.1}
-  .day-num span{font-size:10px;opacity:.85;letter-spacing:1px}
+  .day-num{flex-shrink:0;width:54px;height:54px;border-radius:14px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;background:var(--card);
+    border:1px solid var(--line);box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .day-num b{font-size:21px;font-weight:700;line-height:1.1}
+  .day-num span{font-size:10px;font-weight:600;color:#ff3b30;letter-spacing:1px}
   .day-title h2{font-size:18px;font-weight:700}
   .day-title p{font-size:12.5px;color:var(--sub);margin-top:2px}
 
-  .tl{position:relative;padding-left:22px}
-  .tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;
-    background:linear-gradient(var(--accent),rgba(185,103,255,.1))}
-  .stop{position:relative;margin-bottom:16px;background:var(--card);border:1px solid var(--card-b);
-    border-radius:16px;padding:13px 15px;backdrop-filter:blur(10px)}
-  .stop::before{content:"";position:absolute;left:-21px;top:20px;width:10px;height:10px;border-radius:50%;
-    background:var(--accent);box-shadow:0 0 0 4px rgba(185,103,255,.25)}
-  .stop.hi::before{background:var(--gold);box-shadow:0 0 0 4px rgba(255,209,102,.3)}
-  .time{display:inline-block;font-size:12px;font-weight:700;color:var(--gold);
-    background:rgba(255,209,102,.12);border-radius:6px;padding:2px 8px;margin-bottom:6px}
-  .stop h3{font-size:16px;font-weight:700;margin-bottom:3px}
+  .tl{position:relative;padding-left:20px}
+  .tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:var(--line)}
+  .stop{position:relative;margin-bottom:12px;background:var(--card);border:1px solid var(--line);
+    border-radius:16px;padding:13px 44px 13px 15px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .stop::before{content:"";position:absolute;left:-19px;top:18px;width:10px;height:10px;border-radius:50%;
+    background:var(--blue)}
+  .stop.hi::before{background:var(--purple)}
+  .time{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);
+    background:var(--blue-bg);border-radius:6px;padding:2px 8px;margin-bottom:6px}
+  .stop.hi .time{color:var(--purple);background:var(--purple-bg)}
+  .stop h3{font-size:16px;font-weight:700;margin-bottom:2px}
   .stop p{font-size:13.5px;color:var(--sub)}
   .stop p b{color:var(--txt);font-weight:600}
-  .tagline{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-  .tag{font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--sub)}
-  .tag.m{color:var(--green);border-color:rgba(126,232,162,.35)}
-  .tag.f{color:var(--gold);border-color:rgba(255,209,102,.35)}
-  .tag.c{color:var(--pink);border-color:rgba(255,126,182,.35)}
-  .map{display:inline-block;margin-top:8px;font-size:12.5px;color:var(--accent);text-decoration:none;
-    border:1px solid rgba(185,103,255,.4);border-radius:8px;padding:4px 12px}
+  .tagline{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+  .tag{font-size:11px;padding:3px 9px;border-radius:999px;background:var(--bg);color:var(--sub)}
+  .tag.f{color:var(--orange);background:var(--orange-bg)}
+  .map{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:500;color:var(--blue);
+    text-decoration:none;border:1px solid #d0e3fb;border-radius:8px;padding:4px 12px;background:var(--card)}
 
-  .panel{margin-top:14px;background:var(--card);border:1px solid var(--card-b);border-radius:16px;padding:16px;backdrop-filter:blur(10px)}
-  .panel h4{font-size:15px;font-weight:700;margin-bottom:10px;color:var(--gold)}
+  .panel{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .panel h4{font-size:15px;font-weight:700;margin-bottom:10px}
   .panel table{width:100%;border-collapse:collapse;font-size:13px}
   .panel td{padding:7px 4px;border-bottom:1px solid var(--line);vertical-align:top}
   .panel tr:last-child td{border-bottom:none}
   .panel td:first-child{color:var(--sub);white-space:nowrap;width:38%;padding-right:8px}
   .panel td:last-child{font-weight:500}
+  .panel td b{color:var(--blue);font-weight:600}
 
-  .warn{margin-top:14px;border-left:3px solid var(--gold);background:rgba(255,209,102,.07);
-    border-radius:0 12px 12px 0;padding:12px 14px;font-size:13px;color:#f5e9c8}
-  .warn b{color:var(--gold)}
-  .ok{margin-top:14px;border-left:3px solid var(--green);background:rgba(126,232,162,.06);
-    border-radius:0 12px 12px 0;padding:12px 14px;font-size:13px;color:#d5f0de}
+  .warn{margin-top:14px;border-left:3px solid var(--orange);background:var(--orange-bg);
+    border-radius:0 12px 12px 0;padding:12px 14px;font-size:13px;color:#7a5200}
+  .warn b{color:var(--orange)}
+  .ok{margin-top:14px;border-left:3px solid var(--green);background:var(--green-bg);
+    border-radius:0 12px 12px 0;padding:12px 14px;font-size:13px;color:#1e6b38}
 
   footer{text-align:center;margin-top:44px;font-size:12px;color:var(--sub)}
-  footer .heart{color:var(--pink)}
-
-  /* ===== 打卡进度 ===== */
-  .progress{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;
-    background:rgba(26,11,46,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-    border:1px solid var(--card-b);border-radius:14px;padding:10px 14px;margin:20px 0 4px}
-  .progress .p-label{font-size:12.5px;font-weight:600;white-space:nowrap}
-  .progress .p-label em{font-style:normal;color:var(--gold)}
-  .bar{flex:1;height:8px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
-  .bar i{display:block;height:100%;width:0;border-radius:999px;
-    background:linear-gradient(90deg,var(--accent),var(--pink));transition:width .4s ease}
-  .p-reset{flex-shrink:0;font-size:11px;color:var(--sub);background:none;border:1px solid var(--line);
-    border-radius:999px;padding:3px 10px;cursor:pointer}
+  footer .heart{color:var(--purple)}
 
   /* 勾选钮 */
-  .stop{cursor:default}
   .tick{position:absolute;top:12px;right:12px;width:27px;height:27px;border-radius:50%;
-    border:2px solid rgba(255,255,255,.28);background:none;cursor:pointer;padding:0;
+    border:1.5px solid var(--line);background:var(--card);cursor:pointer;padding:0;
     display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent;
     -webkit-appearance:none;transition:all .2s}
   .tick:active{transform:scale(.85)}
-  .stop.done .tick{background:var(--green);border-color:var(--green);color:#10361f;font-weight:700}
+  .stop.done .tick{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
   .stop.done h3{color:var(--sub);text-decoration:line-through}
   .stop.done p,.stop.done .tagline,.stop.done .map,.stop.done .time{opacity:.4;transition:opacity .3s}
-  .stop.done::before{background:var(--green)!important;box-shadow:0 0 0 4px rgba(126,232,162,.25)!important}
+  .stop.done::before{background:var(--green)}
 
   /* 回顶部 */
   .to-top{position:fixed;right:16px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:60;
-    width:42px;height:42px;border-radius:50%;border:1px solid var(--card-b);cursor:pointer;
-    background:rgba(45,27,78,.9);backdrop-filter:blur(8px);color:var(--txt);font-size:18px;
-    opacity:0;pointer-events:none;transition:opacity .3s}
+    width:42px;height:42px;border-radius:50%;border:1px solid var(--line);cursor:pointer;
+    background:rgba(255,255,255,.92);backdrop-filter:blur(8px);color:var(--txt);font-size:17px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);opacity:0;pointer-events:none;transition:opacity .3s}
   .to-top.show{opacity:1;pointer-events:auto}
 </style>
 </head>
@@ -122,7 +125,6 @@
   <header>
     <div class="badge">I AM GLORIA · 世界巡回演唱会</div>
     <h1>深圳 3 天 2 晚<small>2026.10.04 — 10.06 · 龙岗大运</small></h1>
-    <div class="head-deco">🎤💜</div>
   </header>
 
   <!-- 快览 -->
@@ -134,7 +136,7 @@
     <div class="q-row">
       <div class="q-card">
         <div class="k">🏨 酒店（两晚）</div>
-        <div class="v">皇朝印象酒店<br><em style="font-size:12px;font-weight:400">大运新城店 · 地铁黄阁坑站旁</em></div>
+        <div class="v">皇朝印象酒店<br><em style="font-size:12px;font-weight:400">大运新城店 · 黄阁坑站旁</em></div>
       </div>
       <div class="q-card">
         <div class="k">🚄 往返动车</div>
@@ -155,46 +157,41 @@
   <!-- Day 1 -->
   <section class="day">
     <div class="day-head">
-      <div class="day-num"><b>04</b><span>SUN</span></div>
+      <div class="day-num"><span>SUN</span><b>04</b></div>
       <div class="day-title">
-        <h2>落地即出发 · 福田地标日</h2>
-        <p>深圳北寄存行李 → 莲花山看 CBD → 晚上取行李回酒店</p>
+        <h2>落地即出发 · 福田</h2>
+        <p>深圳北寄存行李 → 玩到晚上 → 取行李回酒店</p>
       </div>
     </div>
     <div class="tl">
       <div class="stop">
         <div class="time">13:00</div>
-        <h3>抵达深圳北站</h3>
-        <p>先不回酒店！出站后在站内<b>寄存行李</b>，轻装开玩。</p>
+        <h3>抵达深圳北站 · 寄存行李</h3>
         <div class="tagline">
-          <span class="tag f">🧳 自助柜 约¥20/12h（超时翻倍！）</span>
-          <span class="tag">周边人工寄存 ¥10–20/天更稳</span>
+          <span class="tag f">柜 ¥20/12h · 超时翻倍</span>
+          <span class="tag">人工点 ¥10–20/天更稳</span>
         </div>
       </div>
       <div class="stop">
         <div class="time">14:00</div>
         <h3>莲花山公园</h3>
-        <p>4 号线深圳北 <b>直达少年宫站</b>（约 20 分钟）。登山约 30 分钟，山顶广场<b>俯瞰福田 CBD 全景</b>，与平安金融中心同框。</p>
-        <div class="tagline"><span class="tag m">免费</span><span class="tag">城市地标</span><span class="tag">难度低</span></div>
-        <a class="map" href="https://uri.amap.com/search?keyword=莲花山公园深圳">📍 地图导航</a>
+        <p>4 号线直达少年宫站 · 登顶俯瞰 CBD</p>
+        <a class="map" href="https://uri.amap.com/search?keyword=莲花山公园深圳">📍 导航</a>
       </div>
       <div class="stop">
         <div class="time">16:00</div>
-        <h3>市民中心 · 深圳书城一带</h3>
-        <p>莲花山南侧下山即达。市民广场开阔好拍；<b>平安金融中心</b>楼下仰拍云际线；书城街区歇脚喝咖啡。</p>
-        <div class="tagline"><span class="tag m">免费</span><span class="tag">顺路 · 步行串联</span></div>
-        <a class="map" href="https://uri.amap.com/search?keyword=深圳市民中心">📍 地图导航</a>
+        <h3>市民中心 · 平安金融中心</h3>
+        <p>市民广场 + 书城街区，步行串联</p>
+        <a class="map" href="https://uri.amap.com/search?keyword=深圳市民中心">📍 导航</a>
       </div>
       <div class="stop">
         <div class="time">17:30</div>
-        <h3>晚餐 · 市民中心片区</h3>
-        <p>少年宫站周边 / 购物公园（COCO Park）一站地铁直达，选择很多，避开饭点排队。</p>
+        <h3>晚餐 · COCO Park</h3>
       </div>
       <div class="stop">
         <div class="time">19:30</div>
-        <h3>返程：回深圳北取行李 → 酒店入住</h3>
-        <p>4 号线少年宫 <b>直达深圳北</b>（20 分钟）取行李 → 5 号线 → 布吉换 14 号线 → 大运换 16 号线 → <b>黄阁坑站</b>，全程约 1 小时。</p>
-        <div class="tagline"><span class="tag m">预计 21:30 前后到酒店</span></div>
+        <h3>回深圳北取行李 → 入住</h3>
+        <p>5→14→16 号线到黄阁坑 · 约 21:30 到店</p>
         <a class="map" href="https://uri.amap.com/search?keyword=皇朝印象酒店深圳龙岗中心大运新城店">📍 酒店导航</a>
       </div>
     </div>
@@ -203,47 +200,43 @@
   <!-- Day 2 -->
   <section class="day">
     <div class="day-head">
-      <div class="day-num"><b>05</b><span>MON</span></div>
+      <div class="day-num"><span>MON</span><b>05</b></div>
       <div class="day-title">
-        <h2>演唱会日 💜</h2>
-        <p>白天龙岗慢逛养精神 · 下午提早到场馆见人 · 晚上大合唱</p>
+        <h2>演唱会日</h2>
+        <p>白天养精神 · 下午提早到场馆见人</p>
       </div>
     </div>
     <div class="tl">
       <div class="stop">
         <div class="time">09:30</div>
         <h3>鹤湖新居</h3>
-        <p>全国最大客家围屋之一，250 年历史，距酒店打车约 10 分钟。清晨人少，慢慢逛拍。</p>
-        <div class="tagline"><span class="tag m">人文</span><span class="tag">不挤</span><span class="tag">1.5–2h</span></div>
-        <a class="map" href="https://uri.amap.com/search?keyword=鹤湖新居">📍 地图导航</a>
+        <p>客家围屋 · 距酒店打车约 10 分钟</p>
+        <a class="map" href="https://uri.amap.com/search?keyword=鹤湖新居">📍 导航</a>
       </div>
       <div class="stop">
         <div class="time">11:30</div>
         <h3>午餐 + 回酒店午休</h3>
-        <p>龙城万科里（吉祥站）或酒店附近吃客家菜 / 潮汕牛肉。回酒店<b>睡个午觉存体力</b>——今晚是战斗夜。</p>
       </div>
       <div class="stop">
         <div class="time">16:00</div>
-        <h3>出发去场馆 · 见朋友</h3>
-        <p>16 号线黄阁坑 → <b>大运中心站</b>（2 站直达）。到场馆周边和约好的人碰面、吃饭聊天，<b>时间留足不赶</b>。</p>
-        <div class="tagline"><span class="tag c">预留充足 · 预留充足 · 预留充足</span></div>
+        <h3>出发场馆 · 见朋友</h3>
+        <p>16 号线黄阁坑 → 大运中心站（2 站）· 时间留足</p>
       </div>
       <div class="stop hi">
         <div class="time">18:30</div>
         <h3>安检进场</h3>
-        <p>大运中心体育场。<b>提前 1 小时到</b>，安检排队比想象久。<br>🎫 带身份证 + 电子票；🥤 场馆闷热注意补水；🧥 薄外套防散场夜风。</p>
+        <p>提前 1 小时 · 身份证 + 电子票</p>
         <a class="map" href="https://uri.amap.com/search?keyword=深圳大运中心体育场">📍 场馆导航</a>
       </div>
       <div class="stop hi">
         <div class="time">19:30</div>
-        <h3>🎤 I AM GLORIA · 开唱</h3>
-        <p>唱到大约 22:30。内场 C 口 / 看台 D 口对应大运中心站不同出口，散场按指引走。</p>
+        <h3>I AM GLORIA · 开唱</h3>
+        <p>约 22:30 结束</p>
       </div>
       <div class="stop">
         <div class="time">22:40</div>
-        <h3>散场：地铁 2 站回酒店</h3>
-        <p>大运中心站 → 16 号线（田心方向）→ <b>黄阁坑站</b>，出站即酒店。<b>完全避开散场打车长龙</b>，这就是住这里的意义。</p>
-        <div class="tagline"><span class="tag f">末班参考 23:02（平日）· 国庆大概率延长</span></div>
+        <h3>散场 · 地铁 2 站回酒店</h3>
+        <div class="tagline"><span class="tag f">末班平日 23:02 · 国庆大概率延长</span></div>
       </div>
     </div>
   </section>
@@ -251,53 +244,49 @@
   <!-- Day 3 -->
   <section class="day">
     <div class="day-head">
-      <div class="day-num"><b>06</b><span>TUE</span></div>
+      <div class="day-num"><span>TUE</span><b>06</b></div>
       <div class="day-title">
         <h2>轻松收尾 · 返程</h2>
-        <p>睡到自然醒 · 龙岗散步 · 按车次回深圳北</p>
+        <p>自然醒 · 按车次回深圳北</p>
       </div>
     </div>
     <div class="tl">
       <div class="stop">
         <div class="time">上午</div>
-        <h3>自然醒 + 大运公园 / 万科里</h3>
-        <p>大运公园绿道散步消消昨夜的疲惫，或龙城万科里逛逛买手信。不安排硬行程，躺到几点都行。</p>
-        <a class="map" href="https://uri.amap.com/search?keyword=大运公园深圳">📍 地图导航</a>
+        <h3>自然醒 · 大运公园 / 万科里</h3>
+        <a class="map" href="https://uri.amap.com/search?keyword=大运公园深圳">📍 导航</a>
       </div>
       <div class="stop">
         <div class="time">12:00</div>
-        <h3>退房（行李寄存前台）</h3>
-        <p>午餐后若离车次还早，可加逛<b>红立方 / 深圳书城龙岗城</b>（现代文化建筑群，近龙城广场站）。</p>
+        <h3>退房 · 行李寄存前台</h3>
       </div>
       <div class="stop">
-        <div class="time">出发前 2.5h</div>
+        <div class="time">−2.5h</div>
         <h3>取行李 → 深圳北</h3>
-        <p>16 号线 → 大运换 14 号线 → 布吉换 5 号线 → 深圳北（约 1 小时）。6 号返程客流大，<b>提前 1 小时到站</b>从容进站。</p>
+        <p>16→14→5 号线约 1 小时 · 提前 1 小时到站</p>
       </div>
       <div class="stop">
         <div class="time">晚上</div>
-        <h3>🚄 动车返福建</h3>
-        <p>行程圆满收官。</p>
+        <h3>动车返福建</h3>
       </div>
     </div>
   </section>
 
   <!-- 交通速查 -->
   <section class="panel">
-    <h4>🚇 地铁速查（都在 16 号线这条线上）</h4>
+    <h4>🚇 地铁速查</h4>
     <table>
-      <tr><td>酒店 ↔ 场馆</td><td>16 号线 黄阁坑 ↔ 大运中心，<b>2 站直达</b></td></tr>
-      <tr><td>深圳北 ↔ 酒店</td><td>5 号线 → 布吉换 14 号线 → 大运换 16 号线 → 黄阁坑（约 1h）</td></tr>
-      <tr><td>福田 ↔ 酒店</td><td>3 号线 → 双龙换 16 号线（约 1.5h）</td></tr>
-      <tr><td>去福田 CBD</td><td>4 号线深圳北 → 少年宫（20 分钟直达）</td></tr>
-      <tr><td>⚠️ 别搞混</td><td>「大运站」≠「大运中心站」——<b>场馆在「大运中心站」</b></td></tr>
+      <tr><td>酒店 ↔ 场馆</td><td>16 号线 2 站直达（黄阁坑 ↔ 大运中心）</td></tr>
+      <tr><td>深圳北 ↔ 酒店</td><td>5 → 布吉 14 → 大运 16 号线 · 约 1h</td></tr>
+      <tr><td>福田 ↔ 酒店</td><td>3 号线 → 双龙换 16 号线 · 约 1.5h</td></tr>
+      <tr><td>⚠️ 别搞混</td><td>场馆在「大运中心站」<b>不是「大运站」</b></td></tr>
     </table>
   </section>
 
-  <div class="warn"><b>📌 节前待办（就这一件）：</b>出发前查「深圳地铁」公众号国庆延长运营公告，确认 10/5 晚 16 号线末班车（平日约 23:02，国庆惯例延长约 1 小时）。万一赶不上末班，黄阁坑就在 2 站外，网约车也比别人好打得多。</div>
+  <div class="warn"><b>📌 节前待办：</b>查「深圳地铁」公众号国庆延长运营公告，确认 10/5 晚 16 号线末班车。</div>
 
   <footer>
-    深圳见 💜 <span class="heart">GLORIA</span> · 10.04 – 10.06
+    深圳见 · <span class="heart">GLORIA</span> · 10.04 – 10.06
   </footer>
 </div>
 <button class="to-top" id="toTop" aria-label="回顶部">↑</button>
