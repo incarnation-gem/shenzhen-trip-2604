@@ -34,10 +34,29 @@
   .quick{display:grid;grid-template-columns:1fr;gap:10px;margin:24px 0 8px}
   .q-card{background:var(--card);border:1px solid var(--line);border-radius:16px;
     padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-  .q-card .k{font-size:12px;color:var(--sub);margin-bottom:4px}
-  .q-card .v{font-size:15px;font-weight:600}
-  .q-card .v em{font-style:normal;color:var(--blue)}
-  .q-row{display:grid;grid-template-columns:1fr;gap:10px}
+  .q-card .v-title{font-size:15.5px;font-weight:700}
+  .q-card .v-loc{font-size:14px;font-weight:600;color:var(--blue);margin-top:2px;cursor:pointer}
+  .q-card .v-loc::after{content:' ›';font-weight:400}
+  .q-card .v-time{font-size:12.5px;color:var(--sub);margin-top:3px}
+  [data-nav]{cursor:pointer}
+
+  /* 导航选择弹窗（iOS Action Sheet 风） */
+  .sheet-mask{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);
+    display:none;align-items:flex-end;justify-content:center}
+  .sheet-mask.show{display:flex}
+  .sheet{width:100%;max-width:640px;padding:0 10px calc(10px + env(safe-area-inset-bottom));
+    animation:sheetUp .22s ease}
+  @keyframes sheetUp{from{transform:translateY(30px);opacity:.6}to{transform:translateY(0);opacity:1}}
+  .sheet-group{background:var(--card);border-radius:14px;overflow:hidden;margin-bottom:8px}
+  .sheet-title{font-size:12.5px;color:var(--sub);text-align:center;padding:12px 16px;
+    border-bottom:1px solid var(--line)}
+  .sheet-btn{display:block;width:100%;font-size:16.5px;font-weight:500;color:var(--blue);
+    background:none;border:none;border-bottom:1px solid var(--line);padding:14px;cursor:pointer;
+    font-family:inherit;text-align:center}
+  .sheet-btn:last-child{border-bottom:none}
+  .sheet-btn:active{background:var(--bg)}
+  .sheet-cancel{display:block;width:100%;font-size:16.5px;font-weight:600;color:var(--txt);
+    background:var(--card);border:none;border-radius:14px;padding:14px;cursor:pointer;font-family:inherit}
 
   /* 打卡进度 */
   .progress{position:sticky;top:8px;z-index:50;display:flex;align-items:center;gap:10px;
@@ -122,24 +141,23 @@
 
   <header>
     <div class="badge">I AM GLORIA · 世界巡回演唱会</div>
-    <h1>深圳 3 天 2 晚<small>2026 年 10 月 04 到 10 月 06</small></h1>
+    <h1>深圳 3 天 2 晚<small>2026.10.04-2026.10.06</small></h1>
   </header>
 
   <!-- 快览 -->
   <section class="quick">
     <div class="q-card">
-      <div class="k">🗓 10.5 周一 · 19:00</div>
-      <div class="v">邓紫棋《I AM GLORIA》演唱会<br><em>大运中心体育场</em></div>
+      <div class="v-title">邓紫棋《I AM GLORIA》演唱会</div>
+      <div class="v-loc" data-nav="深圳大运中心体育场">大运中心体育场</div>
+      <div class="v-time">10.5 周一 · 19:00</div>
     </div>
-    <div class="q-row">
-      <div class="q-card">
-        <div class="k">🏨 酒店（两晚）</div>
-        <div class="v">皇朝印象酒店<br><em style="font-size:12px;font-weight:400">大运新城店 · 黄阁坑站旁</em></div>
-      </div>
-      <div class="q-card">
-        <div class="k">🚄 往返动车</div>
-        <div class="v">已购票 ✅<br><em style="font-size:12px;font-weight:400">去 10/4 · 13:00 到深圳北<br>回 10/6 晚</em></div>
-      </div>
+    <div class="q-card">
+      <div class="v-title" data-nav="皇朝印象酒店龙岗中心大运新城店">皇朝印象酒店（龙岗中心大运新城店）›</div>
+      <div class="v-time">10.4 入住 · 10.6 退房</div>
+    </div>
+    <div class="q-card">
+      <div class="v-title">往返动车 · 深圳北 ⇄ 福建</div>
+      <div class="v-time">去 10.4 13:00 到 · 回 10.6 晚 · 已购票</div>
     </div>
   </section>
 
@@ -285,6 +303,18 @@
     深圳见 · <span class="heart">GLORIA</span> · 10.04 – 10.06
   </footer>
 </div>
+
+<!-- 导航选择弹窗 -->
+<div class="sheet-mask" id="sheetMask">
+  <div class="sheet">
+    <div class="sheet-group">
+      <div class="sheet-title" id="sheetTitle">导航到目的地</div>
+      <button class="sheet-btn" id="navAmap">高德地图</button>
+      <button class="sheet-btn" id="navBaidu">百度地图</button>
+    </div>
+    <button class="sheet-cancel" id="sheetCancel">取消</button>
+  </div>
+</div>
 <button class="to-top" id="toTop" aria-label="回顶部">↑</button>
 <script>
 (function(){
@@ -337,6 +367,29 @@
   });
 
   update();
+
+  // 导航选择弹窗
+  var mask = document.getElementById('sheetMask');
+  var sheetTitle = document.getElementById('sheetTitle');
+  var navTarget = '';
+  document.querySelectorAll('[data-nav]').forEach(function(el){
+    el.addEventListener('click', function(){
+      navTarget = el.getAttribute('data-nav');
+      sheetTitle.textContent = '导航到「' + navTarget + '」';
+      mask.classList.add('show');
+    });
+  });
+  function closeSheet(){ mask.classList.remove('show'); }
+  document.getElementById('navAmap').addEventListener('click', function(){
+    window.open('https://uri.amap.com/search?keyword=' + encodeURIComponent(navTarget), '_blank');
+    closeSheet();
+  });
+  document.getElementById('navBaidu').addEventListener('click', function(){
+    window.open('https://map.baidu.com/?query=' + encodeURIComponent(navTarget), '_blank');
+    closeSheet();
+  });
+  document.getElementById('sheetCancel').addEventListener('click', closeSheet);
+  mask.addEventListener('click', function(e){ if (e.target === mask) closeSheet(); });
 })();
 </script>
 </body>
