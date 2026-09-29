@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a0b2e">
+<title>深圳之旅 · 10.04–10.06</title>
+<style>
+  :root{
+    --bg1:#1a0b2e; --bg2:#2d1b4e; --card:rgba(255,255,255,.07);
+    --card-b:rgba(255,255,255,.12); --txt:#f2ecff; --sub:#b9a8d9;
+    --accent:#b967ff; --gold:#ffd166; --green:#7ee8a2; --pink:#ff7eb6;
+    --line:rgba(255,255,255,.09);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:linear-gradient(160deg,var(--bg1) 0%,var(--bg2) 60%,#22133f 100%);
+    color:var(--txt);min-height:100vh;line-height:1.65;padding-bottom:env(safe-area-inset-bottom);
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 18px 60px}
+
+  header{text-align:center;padding:44px 0 8px}
+  .badge{display:inline-block;font-size:12px;letter-spacing:3px;color:var(--gold);
+    border:1px solid rgba(255,209,102,.4);border-radius:999px;padding:4px 14px;margin-bottom:16px}
+  h1{font-size:30px;font-weight:700;letter-spacing:1px}
+  h1 small{display:block;font-size:14px;font-weight:400;color:var(--sub);margin-top:6px;letter-spacing:2px}
+  .head-deco{font-size:34px;margin-top:10px}
+
+  .quick{display:grid;grid-template-columns:1fr;gap:10px;margin:26px 0 8px}
+  .q-card{background:var(--card);border:1px solid var(--card-b);border-radius:16px;padding:14px 16px;backdrop-filter:blur(10px)}
+  .q-card .k{font-size:12px;color:var(--sub);margin-bottom:4px;letter-spacing:1px}
+  .q-card .v{font-size:15px;font-weight:600}
+  .q-card .v em{font-style:normal;color:var(--gold)}
+  .q-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+  .day{margin-top:34px}
+  .day-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .day-num{flex-shrink:0;width:52px;height:52px;border-radius:14px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent),var(--pink));
+    font-weight:700;box-shadow:0 4px 18px rgba(185,103,255,.35)}
+  .day-num b{font-size:20px;line-height:1.1}
+  .day-num span{font-size:10px;opacity:.85;letter-spacing:1px}
+  .day-title h2{font-size:18px;font-weight:700}
+  .day-title p{font-size:12.5px;color:var(--sub);margin-top:2px}
+
+  .tl{position:relative;padding-left:22px}
+  .tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;
+    background:linear-gradient(var(--accent),rgba(185,103,255,.1))}
+  .stop{position:relative;margin-bottom:16px;background:var(--card);border:1px solid var(--card-b);
+    border-radius:16px;padding:13px 15px;backdrop-filter:blur(10px)}
+  .stop::before{content:"";position:absolute;left:-21px;top:20px;width:10px;height:10px;border-radius:50%;
+    background:var(--accent);box-shadow:0 0 0 4px rgba(185,103,255,.25)}
+  .stop.hi::before{background:var(--gold);box-shadow:0 0 0 4px rgba(255,209,102,.3)}
+  .time{display:inline-block;font-size:12px;font-weight:700;color:var(--gold);
+    background:rgba(255,209,102,.12);border-radius:6px;padding:2px 8px;margin-bottom:6px}
+  .stop h3{font-size:16px;font-weight:700;margin-bottom:3px}
+  .stop p{font-size:13.5px;color:var(--sub)}
+  .stop p b{color:var(--txt);font-weight:600}
+  .tagline{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .tag{font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--sub)}
+  .tag.m{color:var(--green);border-color:rgba(126,232,162,.35)}
+  .tag.f{color:var(--gold);border-color:rgba(255,209,102,.35)}
+  .tag.c{color:var(--pink);border-color:rgba(255,126,182,.35)}
+  .map{display:inline-block;margin-top:8px;font-size:12.5px;color:var(--accent);text-decoration:none;
+    border:1px solid rgba(185,103,255,.4);border-radius:8px;padding:4px 12px}
+
+  .panel{margin-top:14px;background:var(--card);border:1px solid var(--card-b);border-radius:16px;padding:16px;backdrop-filter:blur(10px)}
+  .panel h4{font-size:15px;font-weight:700;margin-bottom:10px;color:var(--gold)}
+  .panel table{width:100%;border-collapse:collapse;font-size:13px}
+  .panel td{padding:7px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+  .panel tr:last-child td{border-bottom:none}
+  .panel td:first-child{color:var(--sub);white-space:nowrap;width:38%;padding-right:8px}
+  .panel td:last-child{font-weight:500}
+
+  .warn{margin-top:14px;border-left:3px solid var(--gold);background:rgba(255,209,102,.07);
+    border-radius:0 12px 12px 0;padding:12px 14px;font-size:13px;color:#f5e9c8}
+  .warn b{color:var(--gold)}
+  .ok{margin-top:14px;border-left:3px solid var(--green);background:rgba(126,232,162,.06);
+    border-radius:0 12px 12px 0;padding:12px 14px;font-size:13px;color:#d5f0de}
+
+  footer{text-align:center;margin-top:44px;font-size:12px;color:var(--sub)}
+  footer .heart{color:var(--pink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="badge">I AM GLORIA · 世界巡回演唱会</div>
+    <h1>深圳 3 天 2 晚<small>2026.10.04 — 10.06 · 龙岗大运</small></h1>
+    <div class="head-deco">🎤💜</div>
+  </header>
+
+  <!-- 快览 -->
+  <section class="quick">
+    <div class="q-card">
+      <div class="k">🗓 10 / 5 周一 · 19:30</div>
+      <div class="v">邓紫棋《I AM GLORIA》演唱会 · <em>大运中心体育场</em></div>
+    </div>
+    <div class="q-row">
+      <div class="q-card">
+        <div class="k">🏨 酒店（两晚）</div>
+        <div class="v">皇朝印象酒店<br><em style="font-size:12px;font-weight:400">大运新城店 · 地铁黄阁坑站旁</em></div>
+      </div>
+      <div class="q-card">
+        <div class="k">🚄 往返动车</div>
+        <div class="v">已购票 ✅<br><em style="font-size:12px;font-weight:400">去 10/4 · 13:00 到深圳北<br>回 10/6 晚</em></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ok">✅ 车票、酒店、门票三大件已全部落定，只剩按天执行。</div>
+
+  <!-- Day 1 -->
+  <section class="day">
+    <div class="day-head">
+      <div class="day-num"><b>04</b><span>SUN</span></div>
+      <div class="day-title">
+        <h2>落地即出发 · 福田地标日</h2>
+        <p>深圳北寄存行李 → 莲花山看 CBD → 晚上取行李回酒店</p>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="stop">
+        <div class="time">13:00</div>
+        <h3>抵达深圳北站</h3>
+        <p>先不回酒店！出站后在站内<b>寄存行李</b>，轻装开玩。</p>
+        <div class="tagline">
+          <span class="tag f">🧳 自助柜 约¥20/12h（超时翻倍！）</span>
+          <span class="tag">周边人工寄存 ¥10–20/天更稳</span>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="time">14:00</div>
+        <h3>莲花山公园</h3>
+        <p>4 号线深圳北 <b>直达少年宫站</b>（约 20 分钟）。登山约 30 分钟，山顶广场<b>俯瞰福田 CBD 全景</b>，与平安金融中心同框。</p>
+        <div class="tagline"><span class="tag m">免费</span><span class="tag">城市地标</span><span class="tag">难度低</span></div>
+        <a class="map" href="https://uri.amap.com/search?keyword=莲花山公园深圳">📍 地图导航</a>
+      </div>
+      <div class="stop">
+        <div class="time">16:00</div>
+        <h3>市民中心 · 深圳书城一带</h3>
+        <p>莲花山南侧下山即达。市民广场开阔好拍；<b>平安金融中心</b>楼下仰拍云际线；书城街区歇脚喝咖啡。</p>
+        <div class="tagline"><span class="tag m">免费</span><span class="tag">顺路 · 步行串联</span></div>
+        <a class="map" href="https://uri.amap.com/search?keyword=深圳市民中心">📍 地图导航</a>
+      </div>
+      <div class="stop">
+        <div class="time">17:30</div>
+        <h3>晚餐 · 市民中心片区</h3>
+        <p>少年宫站周边 / 购物公园（COCO Park）一站地铁直达，选择很多，避开饭点排队。</p>
+      </div>
+      <div class="stop">
+        <div class="time">19:30</div>
+        <h3>返程：回深圳北取行李 → 酒店入住</h3>
+        <p>4 号线少年宫 <b>直达深圳北</b>（20 分钟）取行李 → 5 号线 → 布吉换 14 号线 → 大运换 16 号线 → <b>黄阁坑站</b>，全程约 1 小时。</p>
+        <div class="tagline"><span class="tag m">预计 21:30 前后到酒店</span></div>
+        <a class="map" href="https://uri.amap.com/search?keyword=皇朝印象酒店深圳龙岗中心大运新城店">📍 酒店导航</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 2 -->
+  <section class="day">
+    <div class="day-head">
+      <div class="day-num"><b>05</b><span>MON</span></div>
+      <div class="day-title">
+        <h2>演唱会日 💜</h2>
+        <p>白天龙岗慢逛养精神 · 下午提早到场馆见人 · 晚上大合唱</p>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="stop">
+        <div class="time">09:30</div>
+        <h3>鹤湖新居</h3>
+        <p>全国最大客家围屋之一，250 年历史，距酒店打车约 10 分钟。清晨人少，慢慢逛拍。</p>
+        <div class="tagline"><span class="tag m">人文</span><span class="tag">不挤</span><span class="tag">1.5–2h</span></div>
+        <a class="map" href="https://uri.amap.com/search?keyword=鹤湖新居">📍 地图导航</a>
+      </div>
+      <div class="stop">
+        <div class="time">11:30</div>
+        <h3>午餐 + 回酒店午休</h3>
+        <p>龙城万科里（吉祥站）或酒店附近吃客家菜 / 潮汕牛肉。回酒店<b>睡个午觉存体力</b>——今晚是战斗夜。</p>
+      </div>
+      <div class="stop">
+        <div class="time">16:00</div>
+        <h3>出发去场馆 · 见朋友</h3>
+        <p>16 号线黄阁坑 → <b>大运中心站</b>（2 站直达）。到场馆周边和约好的人碰面、吃饭聊天，<b>时间留足不赶</b>。</p>
+        <div class="tagline"><span class="tag c">预留充足 · 预留充足 · 预留充足</span></div>
+      </div>
+      <div class="stop hi">
+        <div class="time">18:30</div>
+        <h3>安检进场</h3>
+        <p>大运中心体育场。<b>提前 1 小时到</b>，安检排队比想象久。<br>🎫 带身份证 + 电子票；🥤 场馆闷热注意补水；🧥 薄外套防散场夜风。</p>
+        <a class="map" href="https://uri.amap.com/search?keyword=深圳大运中心体育场">📍 场馆导航</a>
+      </div>
+      <div class="stop hi">
+        <div class="time">19:30</div>
+        <h3>🎤 I AM GLORIA · 开唱</h3>
+        <p>唱到大约 22:30。内场 C 口 / 看台 D 口对应大运中心站不同出口，散场按指引走。</p>
+      </div>
+      <div class="stop">
+        <div class="time">22:40</div>
+        <h3>散场：地铁 2 站回酒店</h3>
+        <p>大运中心站 → 16 号线（田心方向）→ <b>黄阁坑站</b>，出站即酒店。<b>完全避开散场打车长龙</b>，这就是住这里的意义。</p>
+        <div class="tagline"><span class="tag f">末班参考 23:02（平日）· 国庆大概率延长</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Day 3 -->
+  <section class="day">
+    <div class="day-head">
+      <div class="day-num"><b>06</b><span>TUE</span></div>
+      <div class="day-title">
+        <h2>轻松收尾 · 返程</h2>
+        <p>睡到自然醒 · 龙岗散步 · 按车次回深圳北</p>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="stop">
+        <div class="time">上午</div>
+        <h3>自然醒 + 大运公园 / 万科里</h3>
+        <p>大运公园绿道散步消消昨夜的疲惫，或龙城万科里逛逛买手信。不安排硬行程，躺到几点都行。</p>
+        <a class="map" href="https://uri.amap.com/search?keyword=大运公园深圳">📍 地图导航</a>
+      </div>
+      <div class="stop">
+        <div class="time">12:00</div>
+        <h3>退房（行李寄存前台）</h3>
+        <p>午餐后若离车次还早，可加逛<b>红立方 / 深圳书城龙岗城</b>（现代文化建筑群，近龙城广场站）。</p>
+      </div>
+      <div class="stop">
+        <div class="time">出发前 2.5h</div>
+        <h3>取行李 → 深圳北</h3>
+        <p>16 号线 → 大运换 14 号线 → 布吉换 5 号线 → 深圳北（约 1 小时）。6 号返程客流大，<b>提前 1 小时到站</b>从容进站。</p>
+      </div>
+      <div class="stop">
+        <div class="time">晚上</div>
+        <h3>🚄 动车返福建</h3>
+        <p>行程圆满收官。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 交通速查 -->
+  <section class="panel">
+    <h4>🚇 地铁速查（都在 16 号线这条线上）</h4>
+    <table>
+      <tr><td>酒店 ↔ 场馆</td><td>16 号线 黄阁坑 ↔ 大运中心，<b>2 站直达</b></td></tr>
+      <tr><td>深圳北 ↔ 酒店</td><td>5 号线 → 布吉换 14 号线 → 大运换 16 号线 → 黄阁坑（约 1h）</td></tr>
+      <tr><td>福田 ↔ 酒店</td><td>3 号线 → 双龙换 16 号线（约 1.5h）</td></tr>
+      <tr><td>去福田 CBD</td><td>4 号线深圳北 → 少年宫（20 分钟直达）</td></tr>
+      <tr><td>⚠️ 别搞混</td><td>「大运站」≠「大运中心站」——<b>场馆在「大运中心站」</b></td></tr>
+    </table>
+  </section>
+
+  <div class="warn"><b>📌 节前待办（就这一件）：</b>出发前查「深圳地铁」公众号国庆延长运营公告，确认 10/5 晚 16 号线末班车（平日约 23:02，国庆惯例延长约 1 小时）。万一赶不上末班，黄阁坑就在 2 站外，网约车也比别人好打得多。</div>
+
+  <footer>
+    深圳见 💜 <span class="heart">GLORIA</span> · 10.04 – 10.06
+  </footer>
+</div>
+</body>
+</html>
