@@ -73,14 +73,13 @@
     border-radius:999px;padding:3px 12px;cursor:pointer}
 
   .day{margin-top:30px}
-  .day-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
-  .day-num{flex-shrink:0;width:54px;height:54px;border-radius:14px;display:flex;flex-direction:column;
+  .day-head{margin-bottom:12px}
+  .day-num{width:54px;height:54px;border-radius:14px;display:flex;flex-direction:column;
     align-items:center;justify-content:center;background:var(--card);
     border:1px solid var(--line);box-shadow:0 1px 3px rgba(0,0,0,.05)}
   .day-num b{font-size:21px;font-weight:700;line-height:1.1}
   .day-num span{font-size:10px;font-weight:600;color:#ff3b30;letter-spacing:1px}
-  .day-title h2{font-size:18px;font-weight:700}
-  .day-title p{font-size:12.5px;color:var(--sub);margin-top:2px}
+  .stop h3 [data-nav]{color:var(--blue)}
 
   .tl{position:relative;padding-left:20px}
   .tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:var(--line)}
@@ -98,8 +97,6 @@
   .tagline{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
   .tag{font-size:11px;padding:3px 9px;border-radius:999px;background:var(--bg);color:var(--sub)}
   .tag.f{color:var(--orange);background:var(--orange-bg)}
-  .map{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:500;color:var(--blue);
-    text-decoration:none;border:1px solid #d0e3fb;border-radius:8px;padding:4px 12px;background:var(--card)}
 
   .panel{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;
     padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
@@ -126,7 +123,7 @@
   .tick:active{transform:scale(.85)}
   .stop.done .tick{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
   .stop.done h3{color:var(--sub);text-decoration:line-through}
-  .stop.done p,.stop.done .tagline,.stop.done .map,.stop.done .time{opacity:.4;transition:opacity .3s}
+  .stop.done p,.stop.done .tagline,.stop.done .time{opacity:.4;transition:opacity .3s}
   .stop.done::before{background:var(--green)}
 
   /* 回顶部 */
@@ -175,15 +172,11 @@
   <section class="day">
     <div class="day-head">
       <div class="day-num"><span>SUN</span><b>04</b></div>
-      <div class="day-title">
-        <h2>落地即出发 · 福田</h2>
-        <p>深圳北寄存行李 → 玩到晚上 → 取行李回酒店</p>
-      </div>
     </div>
     <div class="tl">
       <div class="stop">
         <div class="time">13:00</div>
-        <h3>抵达深圳北站 · 寄存行李</h3>
+        <h3>抵达<span data-nav="深圳北站">深圳北站</span> · 寄存行李</h3>
         <div class="tagline">
           <span class="tag f">柜 ¥20/12h · 超时翻倍</span>
           <span class="tag">人工点 ¥10–20/天更稳</span>
@@ -191,25 +184,22 @@
       </div>
       <div class="stop">
         <div class="time">14:00</div>
-        <h3>莲花山公园</h3>
+        <h3><span data-nav="深圳莲花山公园">莲花山公园</span></h3>
         <p>4 号线直达少年宫站 · 登顶俯瞰 CBD</p>
-        <a class="map" href="https://uri.amap.com/search?keyword=莲花山公园深圳">📍 导航</a>
       </div>
       <div class="stop">
         <div class="time">16:00</div>
-        <h3>市民中心 · 平安金融中心</h3>
+        <h3><span data-nav="深圳市民中心">市民中心</span> · <span data-nav="平安金融中心深圳">平安金融中心</span></h3>
         <p>市民广场 + 书城街区，步行串联</p>
-        <a class="map" href="https://uri.amap.com/search?keyword=深圳市民中心">📍 导航</a>
       </div>
       <div class="stop">
         <div class="time">17:30</div>
-        <h3>晚餐 · COCO Park</h3>
+        <h3>晚餐 · <span data-nav="星河COCO Park深圳">COCO Park</span></h3>
       </div>
       <div class="stop">
         <div class="time">19:30</div>
-        <h3>回深圳北取行李 → 入住</h3>
+        <h3>回<span data-nav="深圳北站">深圳北</span>取行李 → 入住</h3>
         <p>5→14→16 号线到黄阁坑 · 约 21:30 到店</p>
-        <a class="map" href="https://uri.amap.com/search?keyword=皇朝印象酒店深圳龙岗中心大运新城店">📍 酒店导航</a>
       </div>
     </div>
   </section>
@@ -218,17 +208,12 @@
   <section class="day">
     <div class="day-head">
       <div class="day-num"><span>MON</span><b>05</b></div>
-      <div class="day-title">
-        <h2>演唱会日</h2>
-        <p>白天养精神 · 下午提早到场馆见人</p>
-      </div>
     </div>
     <div class="tl">
       <div class="stop">
         <div class="time">09:30</div>
-        <h3>鹤湖新居</h3>
+        <h3><span data-nav="鹤湖新居">鹤湖新居</span></h3>
         <p>客家围屋 · 距酒店打车约 10 分钟</p>
-        <a class="map" href="https://uri.amap.com/search?keyword=鹤湖新居">📍 导航</a>
       </div>
       <div class="stop">
         <div class="time">11:30</div>
@@ -236,14 +221,13 @@
       </div>
       <div class="stop">
         <div class="time">16:00</div>
-        <h3>出发场馆 · 见朋友</h3>
+        <h3>出发<span data-nav="深圳大运中心体育场">场馆</span> · 见朋友</h3>
         <p>16 号线黄阁坑 → 大运中心站（2 站）· 时间留足</p>
       </div>
       <div class="stop hi">
         <div class="time">18:30</div>
         <h3>安检进场</h3>
         <p>提前 1 小时 · 身份证 + 电子票</p>
-        <a class="map" href="https://uri.amap.com/search?keyword=深圳大运中心体育场">📍 场馆导航</a>
       </div>
       <div class="stop hi">
         <div class="time">19:30</div>
@@ -262,16 +246,11 @@
   <section class="day">
     <div class="day-head">
       <div class="day-num"><span>TUE</span><b>06</b></div>
-      <div class="day-title">
-        <h2>轻松收尾 · 返程</h2>
-        <p>自然醒 · 按车次回深圳北</p>
-      </div>
     </div>
     <div class="tl">
       <div class="stop">
         <div class="time">上午</div>
-        <h3>自然醒 · 大运公园 / 万科里</h3>
-        <a class="map" href="https://uri.amap.com/search?keyword=大运公园深圳">📍 导航</a>
+        <h3>自然醒 · <span data-nav="大运公园深圳">大运公园</span> / <span data-nav="龙城万科里">万科里</span></h3>
       </div>
       <div class="stop">
         <div class="time">12:00</div>
@@ -279,7 +258,7 @@
       </div>
       <div class="stop">
         <div class="time">15:30</div>
-        <h3>取行李 → 深圳北</h3>
+        <h3>取行李 → <span data-nav="深圳北站">深圳北</span></h3>
         <p>16→14→5 号线约 1 小时 · 17:00 前到站</p>
       </div>
       <div class="stop">
