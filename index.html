@@ -96,7 +96,11 @@
   .ln-16{background:#a9683a}
   .ln.tk{width:auto;padding:0 9px;border-radius:999px;background:#e3e3e8;color:var(--sub);font-size:11px;font-weight:500}
   .jump{width:9px;height:2px;background:#c9c9cf;display:inline-block;flex-shrink:0}
-  .li{font-size:12.5px;color:#3a3a3c;line-height:1.6}
+  .leg-line{display:flex;align-items:center;flex-wrap:wrap;gap:6px;padding:2.5px 0}
+  .ll{font-size:13.5px;font-weight:600;color:var(--txt)}
+  .arr{color:var(--blue);font-weight:700;font-size:13px}
+  .arr::before{content:"→"}
+  .ldir{font-size:11px;color:var(--sub)}
   .ld{font-size:11px;color:var(--sub);background:var(--bg);border-radius:999px;padding:2px 8px}
 
   .tl{position:relative;padding-left:20px}
@@ -182,7 +186,7 @@
         <div class="time">12:37–13:00</div>
         <h3>抵达<span data-nav="深圳北站">深圳北站</span></h3>
       </div>
-      <div class="leg" data-from="114.029962,22.610262,深圳北站" data-to="113.943370,22.539064,深大地铁站"><div class="leg-route"><span class="ln ln-5">5</span><span class="jump"></span><span class="ln ln-13">13</span><span class="li">深圳北站 B 口乘 5 号线（赤湾方向）→ 留仙洞站内换乘 13 号线（深圳湾口岸方向）→ 深大站下车（近南门）</span></div><div class="leg-eta">预计到达 14:00（约 33 分钟）</div></div>
+      <div class="leg" data-from="114.029962,22.610262,深圳北站" data-to="113.943370,22.539064,深大地铁站"><div class="leg-line"><span class="ln ln-5">5</span><span class="ll">深圳北站 B 口</span><span class="arr"></span><span class="ll">赤湾方向 · 换乘站</span></div><div class="leg-line"><span class="ln ln-13">13</span><span class="ll">留仙洞</span><span class="arr"></span><span class="ll">深圳湾口岸方向 · 出站近深大南门</span></div><div class="leg-eta">预计到达 14:00（约 33 分钟）</div></div><div class="leg-eta">预计到达 14:00（约 33 分钟）</div></div>
       <div class="stop">
         <div class="time">14:00–16:00</div>
         <h3><span data-nav="深圳大学粤海校区">深圳大学</span>粤海校区</h3>
@@ -193,34 +197,34 @@
           <span class="tag">停留约 2 小时</span>
         </div>
       </div>
-      <div class="leg" data-from="113.943370,22.539064,深大地铁站" data-to="113.919228,22.488991,水湾地铁站"><div class="leg-route"><span class="ln ln-1">1</span><span class="jump"></span><span class="ln ln-2">2</span><span class="li">深大站乘 1 号线（机场东方向）→ 世界之窗站换乘 2 号线（赤湾方向）→ 水湾站下车</span></div><div class="leg-eta">预计到达 16:30（约 30 分钟）</div></div>
+      <div class="leg" data-from="113.943370,22.539064,深大地铁站" data-to="113.919228,22.488991,水湾地铁站"><div class="leg-line"><span class="ln ln-1">1</span><span class="ll">深大站</span><span class="arr"></span><span class="ll">机场东方向 · 换乘站</span></div><div class="leg-line"><span class="ln ln-2">2</span><span class="ll">世界之窗</span><span class="arr"></span><span class="ll">赤湾方向</span></div><div class="leg-eta">预计到达 16:30（约 30 分钟）</div></div><div class="leg-eta">预计到达 16:30（约 30 分钟）</div></div>
       <div class="stop">
         <div class="time">16:30–17:30</div>
         <h3><span data-nav="南海意库">南海意库</span> 咖啡</h3>
         <p>旧厂房创意园 独立咖啡馆</p>
         <div class="tagline"><span class="tag">停留约 1 小时</span></div>
       </div>
-      <div class="leg" data-from="113.919228,22.488991,水湾地铁站" data-to="113.943128,22.518702,后海地铁站"><div class="leg-route"><span class="ln ln-2">2</span><span class="li">水湾站乘 2 号线（新秀方向）→ 后海站下车</span></div><div class="leg-eta">预计到达 17:45（约 15 分钟）</div></div>
+      <div class="leg" data-from="113.919228,22.488991,水湾地铁站" data-to="113.943128,22.518702,后海地铁站"><div class="leg-line"><span class="ln ln-2">2</span><span class="ll">水湾站</span><span class="arr"></span><span class="ll">新秀方向</span></div><div class="leg-eta">预计到达 17:45（约 15 分钟）</div></div><div class="leg-eta">预计到达 17:45（约 15 分钟）</div></div>
       <div class="stop">
         <div class="time">17:45–19:00</div>
         <h3>晚饭 <span data-nav="海岸城购物中心">海岸城</span></h3>
         <div class="tagline"><span class="tag">停留约 1 小时 15 分</span></div>
       </div>
-      <div class="leg" data-from="113.943128,22.518702,后海地铁站" data-to="113.944084,22.512528,人才公园地铁站"><div class="leg-route"><span class="ln ln-13">13</span><span class="li">后海站乘 13 号线（深圳湾口岸方向）→ 人才公园站下车 1 站</span></div><div class="leg-eta">预计到达 19:05（约 3 分钟）</div></div>
+      <div class="leg" data-from="113.943128,22.518702,后海地铁站" data-to="113.944084,22.512528,人才公园地铁站"><div class="leg-line"><span class="ln ln-13">13</span><span class="ll">后海站</span><span class="arr"></span><span class="ll">深圳湾口岸方向 · 1 站</span></div><div class="leg-eta">预计到达 19:05（约 3 分钟）</div></div><div class="leg-eta">预计到达 19:05（约 3 分钟）</div></div>
       <div class="stop">
         <div class="time">19:05–20:10</div>
         <h3><span data-nav="人才公园深圳">人才公园</span>夜景</h3>
         <p>春笋大厦灯光 湖面倒影</p>
         <div class="tagline"><span class="tag">停留约 1 小时</span></div>
       </div>
-      <div class="leg" data-from="113.944084,22.512528,人才公园地铁站" data-to="114.068616,22.537704,岗厦北地铁站"><div class="leg-route"><span class="ln ln-13">13</span><span class="jump"></span><span class="ln ln-11">11</span><span class="li">人才公园站乘 13 号线（上屋北方向）→ 后海站换乘 11 号线（福田方向）→ 岗厦北站下车</span></div><div class="leg-eta">预计到达 20:30（约 20 分钟）</div></div>
+      <div class="leg" data-from="113.944084,22.512528,人才公园地铁站" data-to="114.068616,22.537704,岗厦北地铁站"><div class="leg-line"><span class="ln ln-13">13</span><span class="ll">人才公园站</span><span class="arr"></span><span class="ll">上屋北方向 · 换乘站</span></div><div class="leg-line"><span class="ln ln-11">11</span><span class="ll">后海站</span><span class="arr"></span><span class="ll">福田方向</span></div><div class="leg-eta">预计到达 20:30（约 20 分钟）</div></div><div class="leg-eta">预计到达 20:30（约 20 分钟）</div></div>
       <div class="stop">
         <div class="time">20:30–21:00</div>
         <h3><span data-nav="岗厦北地铁站">岗厦北地铁站</span>打卡</h3>
         <p>深圳之眼巨型天窗</p>
         <div class="tagline"><span class="tag">停留约 30 分钟</span></div>
       </div>
-      <div class="leg" data-from="114.068616,22.537704,岗厦北地铁站" data-to="114.218965,22.718491,黄阁坑地铁站"><div class="leg-route"><span class="ln ln-14">14</span><span class="jump"></span><span class="ln ln-16">16</span><span class="li">岗厦北站乘 14 号线（沙田方向）→ 大运站换乘 16 号线（田心方向）→ 黄阁坑站下车</span></div><div class="leg-eta">预计到达 21:45（约 45 分钟）</div></div>
+      <div class="leg" data-from="114.068616,22.537704,岗厦北地铁站" data-to="114.218965,22.718491,黄阁坑地铁站"><div class="leg-line"><span class="ln ln-14">14</span><span class="ll">岗厦北站</span><span class="arr"></span><span class="ll">沙田方向 · 换乘站</span></div><div class="leg-line"><span class="ln ln-16">16</span><span class="ll">大运站</span><span class="arr"></span><span class="ll">田心方向</span></div><div class="leg-eta">预计到达 21:45（约 45 分钟）</div></div><div class="leg-eta">预计到达 21:45（约 45 分钟）</div></div>
       <div class="stop">
         <div class="time">21:45</div>
         <h3>返回<span data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span>入住</h3>
@@ -234,20 +238,20 @@
       <div class="day-num"><span>MON</span><b>05</b></div>
     </div>
         <div class="tl">
-      <div class="leg" data-nav="鹤湖新居"><div class="leg-route"><span class="ln tk">打车</span><span class="li">酒店出发打车 → 鹤湖新居</span></div><div class="leg-eta">预计到达 09:30（约 10 分钟）</div></div>
+      <div class="leg" data-nav="鹤湖新居"><div class="leg-line"><span class="ln tk">打车</span><span class="ll">酒店</span><span class="arr"></span><span class="ll">鹤湖新居</span></div><div class="leg-eta">预计到达 09:30（约 10 分钟）</div></div><div class="leg-eta">预计到达 09:30（约 10 分钟）</div></div>
       <div class="stop">
         <div class="time">09:30–11:30</div>
         <h3><span data-nav="鹤湖新居">鹤湖新居</span></h3>
         <p>客家围屋</p>
         <div class="tagline"><span class="tag">停留约 2 小时</span></div>
       </div>
-      <div class="leg" data-nav="皇朝印象酒店龙岗中心大运新城店"><div class="leg-route"><span class="ln tk">打车</span><span class="li">鹤湖新居打车 → 返回酒店</span></div><div class="leg-eta">预计到达 11:40（约 10 分钟）</div></div>
+      <div class="leg" data-nav="皇朝印象酒店龙岗中心大运新城店"><div class="leg-line"><span class="ln tk">打车</span><span class="ll">鹤湖新居</span><span class="arr"></span><span class="ll">酒店</span></div><div class="leg-eta">预计到达 11:40（约 10 分钟）</div></div><div class="leg-eta">预计到达 11:40（约 10 分钟）</div></div>
       <div class="stop">
         <div class="time">11:40–15:50</div>
         <h3>午餐 回酒店午休</h3>
         <div class="tagline"><span class="tag">停留约 4 小时</span></div>
       </div>
-      <div class="leg" data-from="114.218965,22.718491,黄阁坑地铁站" data-to="114.220022,22.695191,大运中心地铁站"><div class="leg-route"><span class="ln ln-16">16</span><span class="li">黄阁坑站乘 16 号线（大运方向）→ 大运中心站下车（C 口内场 D 口看台）</span></div><div class="leg-eta">预计到达 16:10（约 10 分钟）</div></div>
+      <div class="leg" data-from="114.218965,22.718491,黄阁坑地铁站" data-to="114.220022,22.695191,大运中心地铁站"><div class="leg-line"><span class="ln ln-16">16</span><span class="ll">黄阁坑站</span><span class="arr"></span><span class="ll">大运方向 · C 口内场 D 口看台</span></div><div class="leg-eta">预计到达 16:10（约 10 分钟）</div></div><div class="leg-eta">预计到达 16:10（约 10 分钟）</div></div>
       <div class="stop">
         <div class="time">16:10–19:00</div>
         <h3><span data-nav="深圳大运中心体育场">大运中心</span> 见朋友</h3>
@@ -259,7 +263,7 @@
         <h3>I AM GLORIA 演唱会</h3>
         <div class="tagline"><span class="tag">停留约 3 小时</span></div>
       </div>
-      <div class="leg" data-from="114.220022,22.695191,大运中心地铁站" data-to="114.218965,22.718491,黄阁坑地铁站"><div class="leg-route"><span class="ln ln-16">16</span><span class="li">大运中心站乘 16 号线（田心方向）→ 黄阁坑站下车 或打车</span></div><div class="leg-eta">预计到达 22:15（约 10 分钟）</div></div>
+      <div class="leg" data-from="114.220022,22.695191,大运中心地铁站" data-to="114.218965,22.718491,黄阁坑地铁站"><div class="leg-line"><span class="ln ln-16">16</span><span class="ll">大运中心站</span><span class="arr"></span><span class="ll">田心方向 · 或打车</span></div><div class="leg-eta">预计到达 22:15（约 10 分钟）</div></div><div class="leg-eta">预计到达 22:15（约 10 分钟）</div></div>
       <div class="stop">
         <div class="time">22:15</div>
         <h3>散场回酒店</h3>
@@ -283,7 +287,7 @@
         <h3>退房 行李寄存前台</h3>
         <div class="tagline"><span class="tag">停留约 30 分钟</span></div>
       </div>
-      <div class="leg" data-from="114.218965,22.718491,黄阁坑地铁站" data-to="114.029962,22.610262,深圳北站"><div class="leg-route"><span class="ln ln-16">16</span><span class="jump"></span><span class="ln ln-14">14</span><span class="jump"></span><span class="ln ln-5">5</span><span class="li">黄阁坑站乘 16 号线（大运方向）→ 大运站换乘 14 号线（岗厦北方向）→ 布吉站换乘 5 号线（黄贝岭方向）→ 深圳北站下车</span></div><div class="leg-eta">预计到达 16:40（约 1 小时）</div></div>
+      <div class="leg" data-from="114.218965,22.718491,黄阁坑地铁站" data-to="114.029962,22.610262,深圳北站"><div class="leg-line"><span class="ln ln-16">16</span><span class="ll">黄阁坑站</span><span class="arr"></span><span class="ll">大运方向 · 换乘站</span></div><div class="leg-line"><span class="ln ln-14">14</span><span class="ll">大运站</span><span class="arr"></span><span class="ll">岗厦北方向 · 换乘站</span></div><div class="leg-line"><span class="ln ln-5">5</span><span class="ll">布吉站</span><span class="arr"></span><span class="ll">黄贝岭方向</span></div><div class="leg-eta">预计到达 16:40（约 1 小时）</div></div><div class="leg-eta">预计到达 16:40（约 1 小时）</div></div>
       <div class="stop">
         <div class="time">16:40–18:04</div>
         <h3><span data-nav="深圳北站">深圳北站</span>候车</h3>
