@@ -80,8 +80,20 @@
   .day-num b{font-size:21px;font-weight:700;line-height:1.1}
   .day-num span{font-size:10px;font-weight:600;color:#ff3b30;letter-spacing:1px}
   .stop h3 [data-nav]{color:var(--blue)}
-  .leg{font-size:12px;color:var(--sub);padding:0 0 12px 2px;margin:-2px 0 12px;line-height:1.5}
-  .leg::before{content:"↓ ";color:var(--blue);font-weight:700}
+  .leg{display:flex;align-items:center;flex-wrap:wrap;gap:5px;padding:0 0 12px 2px;margin:-2px 0 12px}
+  .ln{width:22px;height:22px;border-radius:50%;color:#fff;font-size:12px;font-weight:700;
+    display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .ln-1{background:#00a651}
+  .ln-2{background:#f08300}
+  .ln-5{background:#8f4dbf}
+  .ln-11{background:#5c2e91}
+  .ln-13{background:#8c9bab}
+  .ln-14{background:#e8b410;color:#3a2c00}
+  .ln-16{background:#a9683a}
+  .ln.tk{width:auto;padding:0 9px;border-radius:999px;background:#e3e3e8;color:var(--sub);font-size:11px;font-weight:500}
+  .jump{width:9px;height:2px;background:#c9c9cf;display:inline-block;flex-shrink:0}
+  .li{font-size:12px;color:var(--sub)}
+  .ld{font-size:11px;color:var(--sub);background:var(--bg);border-radius:999px;padding:2px 8px}
 
   .tl{position:relative;padding-left:20px}
   .tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:var(--line)}
@@ -166,7 +178,7 @@
         <div class="time">第1站 13:00</div>
         <h3>抵达<span data-nav="深圳北站">深圳北站</span></h3>
       </div>
-      <div class="leg">地铁 5 号线 前海湾换 1 号线 深大站下车 约 55 分钟</div>
+      <div class="leg"><span class="ln ln-5">5</span><span class="jump"></span><span class="ln ln-1">1</span><span class="li">前海湾换乘 深大站</span><span class="ld">55分钟</span></div>
       <div class="stop">
         <div class="time">第2站 14:15–16:00</div>
         <h3><span data-nav="深圳大学粤海校区">深圳大学</span>粤海校区</h3>
@@ -176,30 +188,30 @@
           <span class="tag">17:30 放号 国庆名额 9/30 起抢</span>
         </div>
       </div>
-      <div class="leg">地铁 1 号线 世界之窗换 2 号线 水湾站下车 约 25 分钟</div>
+      <div class="leg"><span class="ln ln-1">1</span><span class="jump"></span><span class="ln ln-2">2</span><span class="li">世界之窗换乘 水湾站</span><span class="ld">25分钟</span></div>
       <div class="stop">
         <div class="time">第3站 16:30–17:30</div>
         <h3><span data-nav="南海意库">南海意库</span> 咖啡</h3>
         <p>旧厂房创意园 独立咖啡馆</p>
       </div>
-      <div class="leg">地铁 2 号线 水湾站到后海站 约 8 分钟</div>
+      <div class="leg"><span class="ln ln-2">2</span><span class="li">后海站</span><span class="ld">8分钟</span></div>
       <div class="stop">
         <div class="time">第4站 17:45–19:00</div>
         <h3>晚饭 <span data-nav="海岸城购物中心">海岸城</span></h3>
       </div>
-      <div class="leg">后海站步行或 13 号线 1 站</div>
+      <div class="leg"><span class="ln ln-13">13</span><span class="li">人才公园站 或步行</span></div>
       <div class="stop">
         <div class="time">第5站 19:00–20:10</div>
         <h3><span data-nav="人才公园深圳">人才公园</span>夜景</h3>
         <p>春笋大厦灯光 湖面倒影</p>
       </div>
-      <div class="leg">地铁 11 号线 后海站到岗厦北站 约 15 分钟</div>
+      <div class="leg"><span class="ln ln-11">11</span><span class="li">岗厦北站</span><span class="ld">15分钟</span></div>
       <div class="stop">
         <div class="time">第6站 20:20–20:50</div>
         <h3><span data-nav="岗厦北地铁站">岗厦北地铁站</span>打卡</h3>
         <p>深圳之眼巨型天窗</p>
       </div>
-      <div class="leg">地铁 14 号线 大运换 16 号线 约 45 分钟</div>
+      <div class="leg"><span class="ln ln-14">14</span><span class="jump"></span><span class="ln ln-16">16</span><span class="li">大运换乘 黄阁坑站</span><span class="ld">45分钟</span></div>
       <div class="stop">
         <div class="time">第7站 20:50–22:00</div>
         <h3>返回<span data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span>入住</h3>
@@ -214,18 +226,18 @@
       <div class="day-num"><span>MON</span><b>05</b></div>
     </div>
     <div class="tl">
-      <div class="leg">酒店打车约 10 分钟</div>
+      <div class="leg"><span class="ln tk">打车</span><span class="li">酒店出发</span><span class="ld">10分钟</span></div>
       <div class="stop">
         <div class="time">第1站 09:30–11:30</div>
         <h3><span data-nav="鹤湖新居">鹤湖新居</span></h3>
         <p>客家围屋</p>
       </div>
-      <div class="leg">打车返回酒店</div>
+      <div class="leg"><span class="ln tk">打车</span><span class="li">返回酒店</span><span class="ld">10分钟</span></div>
       <div class="stop">
         <div class="time">第2站 11:30–15:30</div>
         <h3>午餐 回酒店午休</h3>
       </div>
-      <div class="leg">地铁 16 号线 黄阁坑到大运中心站 2 站 约 10 分钟</div>
+      <div class="leg"><span class="ln ln-16">16</span><span class="li">黄阁坑到大运中心 2 站</span><span class="ld">10分钟</span></div>
       <div class="stop">
         <div class="time">第3站 16:00–19:00</div>
         <h3><span data-nav="深圳大运中心体育场">大运中心</span> 见朋友</h3>
@@ -235,7 +247,7 @@
         <div class="time">第4站 19:00–22:00</div>
         <h3>I AM GLORIA 演唱会</h3>
       </div>
-      <div class="leg">地铁 16 号线 2 站 或 打车约 10 分钟</div>
+      <div class="leg"><span class="ln ln-16">16</span><span class="li">黄阁坑站 或打车</span><span class="ld">10分钟</span></div>
       <div class="stop">
         <div class="time">第5站 22:00–22:30</div>
         <h3>散场回酒店</h3>
@@ -257,7 +269,7 @@
         <div class="time">第2站 11:30–12:00</div>
         <h3>退房 行李寄存前台</h3>
       </div>
-      <div class="leg">地铁 16 号线 大运换 14 号线 布吉换 5 号线 约 1 小时</div>
+      <div class="leg"><span class="ln ln-16">16</span><span class="jump"></span><span class="ln ln-14">14</span><span class="jump"></span><span class="ln ln-5">5</span><span class="li">大运 布吉换乘</span><span class="ld">1小时</span></div>
       <div class="stop">
         <div class="time">第3站 15:30–16:40</div>
         <h3><span data-nav="深圳北站">深圳北站</span>候车</h3>
