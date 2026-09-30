@@ -81,6 +81,8 @@
   .day-num span{font-size:10px;font-weight:600;color:#ff3b30;letter-spacing:1px}
   .stop h3 [data-nav]{color:var(--blue)}
   .leg{display:flex;align-items:center;flex-wrap:wrap;gap:5px;padding:0 0 12px 2px;margin:-2px 0 12px}
+  .leg[data-from],.leg[data-nav]{cursor:pointer}
+  .leg[data-from]:active,.leg[data-nav]:active{opacity:.6}
   .ln{width:22px;height:22px;border-radius:50%;color:#fff;font-size:12px;font-weight:700;
     display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
   .ln-1{background:#00a651}
@@ -178,7 +180,7 @@
         <div class="time">第1站 13:00</div>
         <h3>抵达<span data-nav="深圳北站">深圳北站</span></h3>
       </div>
-      <div class="leg"><span class="ln ln-5">5</span><span class="jump"></span><span class="ln ln-1">1</span><span class="li">前海湾换乘 深大站</span><span class="ld">55分钟</span></div>
+      <div class="leg" data-from="114.029962,22.610262,深圳北站" data-to="113.943370,22.539064,深大地铁站"><span class="ln ln-5">5</span><span class="jump"></span><span class="ln ln-13">13</span><span class="li">深圳北站B口进 留仙洞换乘 深大站下（近深大南门）</span><span class="ld">33分钟</span></div>
       <div class="stop">
         <div class="time">第2站 14:15–16:00</div>
         <h3><span data-nav="深圳大学粤海校区">深圳大学</span>粤海校区</h3>
@@ -188,30 +190,30 @@
           <span class="tag">17:30 放号 国庆名额 9/30 起抢</span>
         </div>
       </div>
-      <div class="leg"><span class="ln ln-1">1</span><span class="jump"></span><span class="ln ln-2">2</span><span class="li">世界之窗换乘 水湾站</span><span class="ld">25分钟</span></div>
+      <div class="leg" data-from="113.943370,22.539064,深大地铁站" data-to="113.919228,22.488991,水湾地铁站"><span class="ln ln-1">1</span><span class="jump"></span><span class="ln ln-2">2</span><span class="li">深大站上 世界之窗换乘 水湾站下</span><span class="ld">30分钟</span></div>
       <div class="stop">
         <div class="time">第3站 16:30–17:30</div>
         <h3><span data-nav="南海意库">南海意库</span> 咖啡</h3>
         <p>旧厂房创意园 独立咖啡馆</p>
       </div>
-      <div class="leg"><span class="ln ln-2">2</span><span class="li">后海站</span><span class="ld">8分钟</span></div>
+      <div class="leg" data-from="113.919228,22.488991,水湾地铁站" data-to="113.943128,22.518702,后海地铁站"><span class="ln ln-2">2</span><span class="li">水湾站上 后海站下</span><span class="ld">15分钟</span></div>
       <div class="stop">
         <div class="time">第4站 17:45–19:00</div>
         <h3>晚饭 <span data-nav="海岸城购物中心">海岸城</span></h3>
       </div>
-      <div class="leg"><span class="ln ln-13">13</span><span class="li">人才公园站 或步行</span></div>
+      <div class="leg" data-from="113.943128,22.518702,后海地铁站" data-to="113.944084,22.512528,人才公园地铁站"><span class="ln ln-13">13</span><span class="li">后海站上 人才公园站下 1 站</span><span class="ld">3分钟</span></div>
       <div class="stop">
         <div class="time">第5站 19:00–20:10</div>
         <h3><span data-nav="人才公园深圳">人才公园</span>夜景</h3>
         <p>春笋大厦灯光 湖面倒影</p>
       </div>
-      <div class="leg"><span class="ln ln-11">11</span><span class="li">岗厦北站</span><span class="ld">15分钟</span></div>
+      <div class="leg" data-from="113.944084,22.512528,人才公园地铁站" data-to="114.068616,22.537704,岗厦北地铁站"><span class="ln ln-13">13</span><span class="jump"></span><span class="ln ln-11">11</span><span class="li">人才公园站上 后海换乘 岗厦北站下</span><span class="ld">20分钟</span></div>
       <div class="stop">
         <div class="time">第6站 20:20–20:50</div>
         <h3><span data-nav="岗厦北地铁站">岗厦北地铁站</span>打卡</h3>
         <p>深圳之眼巨型天窗</p>
       </div>
-      <div class="leg"><span class="ln ln-14">14</span><span class="jump"></span><span class="ln ln-16">16</span><span class="li">大运换乘 黄阁坑站</span><span class="ld">45分钟</span></div>
+      <div class="leg" data-from="114.068616,22.537704,岗厦北地铁站" data-to="114.218965,22.718491,黄阁坑地铁站"><span class="ln ln-14">14</span><span class="jump"></span><span class="ln ln-16">16</span><span class="li">岗厦北站上 大运换乘 黄阁坑站下</span><span class="ld">45分钟</span></div>
       <div class="stop">
         <div class="time">第7站 20:50–22:00</div>
         <h3>返回<span data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span>入住</h3>
@@ -226,18 +228,18 @@
       <div class="day-num"><span>MON</span><b>05</b></div>
     </div>
     <div class="tl">
-      <div class="leg"><span class="ln tk">打车</span><span class="li">酒店出发</span><span class="ld">10分钟</span></div>
+      <div class="leg" data-nav="鹤湖新居"><span class="ln tk">打车</span><span class="li">酒店出发 鹤湖新居下</span><span class="ld">10分钟</span></div>
       <div class="stop">
         <div class="time">第1站 09:30–11:30</div>
         <h3><span data-nav="鹤湖新居">鹤湖新居</span></h3>
         <p>客家围屋</p>
       </div>
-      <div class="leg"><span class="ln tk">打车</span><span class="li">返回酒店</span><span class="ld">10分钟</span></div>
+      <div class="leg" data-nav="皇朝印象酒店龙岗中心大运新城店"><span class="ln tk">打车</span><span class="li">鹤湖新居上 返回酒店</span><span class="ld">10分钟</span></div>
       <div class="stop">
         <div class="time">第2站 11:30–15:30</div>
         <h3>午餐 回酒店午休</h3>
       </div>
-      <div class="leg"><span class="ln ln-16">16</span><span class="li">黄阁坑到大运中心 2 站</span><span class="ld">10分钟</span></div>
+      <div class="leg" data-from="114.218965,22.718491,黄阁坑地铁站" data-to="114.220022,22.695191,大运中心地铁站"><span class="ln ln-16">16</span><span class="li">黄阁坑站上 大运中心站下 2 站 C口内场 D口看台</span><span class="ld">10分钟</span></div>
       <div class="stop">
         <div class="time">第3站 16:00–19:00</div>
         <h3><span data-nav="深圳大运中心体育场">大运中心</span> 见朋友</h3>
@@ -247,7 +249,7 @@
         <div class="time">第4站 19:00–22:00</div>
         <h3>I AM GLORIA 演唱会</h3>
       </div>
-      <div class="leg"><span class="ln ln-16">16</span><span class="li">黄阁坑站 或打车</span><span class="ld">10分钟</span></div>
+      <div class="leg" data-from="114.220022,22.695191,大运中心地铁站" data-to="114.218965,22.718491,黄阁坑地铁站"><span class="ln ln-16">16</span><span class="li">大运中心站上 黄阁坑站下 或打车</span><span class="ld">10分钟</span></div>
       <div class="stop">
         <div class="time">第5站 22:00–22:30</div>
         <h3>散场回酒店</h3>
@@ -269,7 +271,7 @@
         <div class="time">第2站 11:30–12:00</div>
         <h3>退房 行李寄存前台</h3>
       </div>
-      <div class="leg"><span class="ln ln-16">16</span><span class="jump"></span><span class="ln ln-14">14</span><span class="jump"></span><span class="ln ln-5">5</span><span class="li">大运 布吉换乘</span><span class="ld">1小时</span></div>
+      <div class="leg" data-from="114.218965,22.718491,黄阁坑地铁站" data-to="114.029962,22.610262,深圳北站"><span class="ln ln-16">16</span><span class="jump"></span><span class="ln ln-14">14</span><span class="jump"></span><span class="ln ln-5">5</span><span class="li">黄阁坑站上 大运 布吉换乘 深圳北站下</span><span class="ld">1小时</span></div>
       <div class="stop">
         <div class="time">第3站 15:30–16:40</div>
         <h3><span data-nav="深圳北站">深圳北站</span>候车</h3>
@@ -352,24 +354,36 @@
 
   update();
 
-  // 导航选择弹窗
+  // 导航选择弹窗（地点=搜索模式；交通段=公交规划直链）
   var mask = document.getElementById('sheetMask');
   var sheetTitle = document.getElementById('sheetTitle');
-  var navTarget = '';
-  document.querySelectorAll('[data-nav]').forEach(function(el){
+  var navTarget = '', navFrom = '', navTo = '';
+  document.querySelectorAll('[data-nav],[data-from]').forEach(function(el){
     el.addEventListener('click', function(){
-      navTarget = el.getAttribute('data-nav');
-      sheetTitle.textContent = '导航到「' + navTarget + '」';
+      navFrom = el.getAttribute('data-from') || '';
+      navTo = el.getAttribute('data-to') || '';
+      if (navFrom) {
+        var fromName = navFrom.split(',')[2] || '';
+        var toName = navTo.split(',')[2] || '';
+        sheetTitle.textContent = '公交规划 ' + fromName + ' → ' + toName;
+      } else {
+        navTarget = el.getAttribute('data-nav');
+        sheetTitle.textContent = '导航到「' + navTarget + '」';
+      }
       mask.classList.add('show');
     });
   });
   function closeSheet(){ mask.classList.remove('show'); }
   document.getElementById('navAmap').addEventListener('click', function(){
-    window.open('https://uri.amap.com/search?keyword=' + encodeURIComponent(navTarget), '_blank');
+    window.open(navFrom
+      ? 'https://uri.amap.com/navigation?from=' + navFrom + '&to=' + navTo + '&mode=bus&policy=1&src=trip&coordinate=gaode&callnative=0'
+      : 'https://uri.amap.com/search?keyword=' + encodeURIComponent(navTarget), '_blank');
     closeSheet();
   });
   document.getElementById('navBaidu').addEventListener('click', function(){
-    window.open('https://map.baidu.com/?query=' + encodeURIComponent(navTarget), '_blank');
+    window.open(navFrom
+      ? 'https://api.map.baidu.com/direction?origin=' + encodeURIComponent(navTo ? navFrom.split(',')[2] : '') + '&destination=' + encodeURIComponent(navTo.split(',')[2] || '') + '&mode=transit&region=%E6%B7%B1%E5%9C%B3&output=html&src=web'
+      : 'https://map.baidu.com/?query=' + encodeURIComponent(navTarget), '_blank');
     closeSheet();
   });
   document.getElementById('sheetCancel').addEventListener('click', closeSheet);
