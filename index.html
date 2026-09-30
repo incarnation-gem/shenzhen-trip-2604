@@ -80,6 +80,8 @@
   .day-num b{font-size:21px;font-weight:700;line-height:1.1}
   .day-num span{font-size:10px;font-weight:600;color:#ff3b30;letter-spacing:1px}
   .stop h3 [data-nav]{color:var(--blue)}
+  .leg{font-size:12px;color:var(--sub);padding:0 0 12px 2px;margin:-2px 0 12px;line-height:1.5}
+  .leg::before{content:"↓ ";color:var(--blue);font-weight:700}
 
   .tl{position:relative;padding-left:20px}
   .tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:var(--line)}
@@ -164,43 +166,43 @@
         <div class="time">第1站 13:00</div>
         <h3>抵达<span data-nav="深圳北站">深圳北站</span></h3>
       </div>
+      <div class="leg">地铁 5 号线 前海湾换 1 号线 深大站下车 约 55 分钟</div>
       <div class="stop">
         <div class="time">第2站 14:15–16:00</div>
         <h3><span data-nav="深圳大学粤海校区">深圳大学</span>粤海校区</h3>
-        <p>地铁 5 号线 前海湾换 1 号线 约 55 分钟</p>
         <p>文山湖 荔枝林 杜衡图书馆</p>
         <div class="tagline">
           <span class="tag f">入校需预约 小程序「深圳大学校园参观预约」</span>
           <span class="tag">17:30 放号 国庆名额 9/30 起抢</span>
         </div>
       </div>
+      <div class="leg">地铁 1 号线 世界之窗换 2 号线 水湾站下车 约 25 分钟</div>
       <div class="stop">
         <div class="time">第3站 16:30–17:30</div>
         <h3><span data-nav="南海意库">南海意库</span> 咖啡</h3>
-        <p>地铁 1 号线 世界之窗换 2 号线 水湾站 约 25 分钟</p>
-        <p>蛇口旧厂房创意园 独立咖啡馆</p>
+        <p>旧厂房创意园 独立咖啡馆</p>
       </div>
+      <div class="leg">地铁 2 号线 水湾站到后海站 约 8 分钟</div>
       <div class="stop">
         <div class="time">第4站 17:45–19:00</div>
         <h3>晚饭 <span data-nav="海岸城购物中心">海岸城</span></h3>
-        <p>地铁 2 号线 水湾站到后海站 约 8 分钟</p>
       </div>
+      <div class="leg">后海站步行或 13 号线 1 站</div>
       <div class="stop">
         <div class="time">第5站 19:00–20:10</div>
         <h3><span data-nav="人才公园深圳">人才公园</span>夜景</h3>
-        <p>后海站步行或 13 号线 1 站</p>
         <p>春笋大厦灯光 湖面倒影</p>
       </div>
+      <div class="leg">地铁 11 号线 后海站到岗厦北站 约 15 分钟</div>
       <div class="stop">
         <div class="time">第6站 20:20–20:50</div>
         <h3><span data-nav="岗厦北地铁站">岗厦北地铁站</span>打卡</h3>
-        <p>地铁 11 号线 后海站到岗厦北站 约 15 分钟</p>
         <p>深圳之眼巨型天窗</p>
       </div>
+      <div class="leg">地铁 14 号线 大运换 16 号线 约 45 分钟</div>
       <div class="stop">
         <div class="time">第7站 20:50–22:00</div>
         <h3>返回<span data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span>入住</h3>
-        <p>地铁 14 号线 大运换 16 号线 约 45 分钟</p>
         <p>约 22:00 到店</p>
       </div>
     </div>
@@ -212,30 +214,31 @@
       <div class="day-num"><span>MON</span><b>05</b></div>
     </div>
     <div class="tl">
+      <div class="leg">酒店打车约 10 分钟</div>
       <div class="stop">
         <div class="time">第1站 09:30–11:30</div>
         <h3><span data-nav="鹤湖新居">鹤湖新居</span></h3>
-        <p>酒店打车约 10 分钟</p>
         <p>客家围屋</p>
       </div>
+      <div class="leg">打车返回酒店</div>
       <div class="stop">
         <div class="time">第2站 11:30–15:30</div>
         <h3>午餐 回酒店午休</h3>
       </div>
+      <div class="leg">地铁 16 号线 黄阁坑到大运中心站 2 站 约 10 分钟</div>
       <div class="stop">
         <div class="time">第3站 16:00–19:00</div>
-        <h3>出发<span data-nav="深圳大运中心体育场">场馆</span> 见朋友</h3>
-        <p>地铁 16 号线 黄阁坑到大运中心站 2 站 约 10 分钟</p>
+        <h3><span data-nav="深圳大运中心体育场">大运中心</span> 见朋友</h3>
         <p>时间留足</p>
       </div>
       <div class="stop hi">
         <div class="time">第4站 19:00–22:00</div>
         <h3>I AM GLORIA 演唱会</h3>
       </div>
+      <div class="leg">地铁 16 号线 2 站 或 打车约 10 分钟</div>
       <div class="stop">
         <div class="time">第5站 22:00–22:30</div>
         <h3>散场回酒店</h3>
-        <p>地铁 16 号线 2 站 或 打车约 10 分钟</p>
       </div>
     </div>
   </section>
@@ -254,11 +257,11 @@
         <div class="time">第2站 11:30–12:00</div>
         <h3>退房 行李寄存前台</h3>
       </div>
+      <div class="leg">地铁 16 号线 大运换 14 号线 布吉换 5 号线 约 1 小时</div>
       <div class="stop">
         <div class="time">第3站 15:30–16:40</div>
-        <h3>前往<span data-nav="深圳北站">深圳北站</span></h3>
-        <p>地铁 16 号线 大运换 14 号线 布吉换 5 号线 约 1 小时</p>
-        <p>17:00 前到站候车</p>
+        <h3><span data-nav="深圳北站">深圳北站</span>候车</h3>
+        <p>17:00 前到站</p>
       </div>
       <div class="stop">
         <div class="time">第4站 18:04–21:36</div>
