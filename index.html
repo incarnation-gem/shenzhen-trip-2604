@@ -103,6 +103,8 @@
   .s-line{width:100%;min-width:44px;border-top:1.5px solid #c9c9cf;margin:2px 0}
   .s-stops{font-size:10px;color:var(--sub);line-height:1.3;white-space:nowrap}
   .lnote{font-size:11px;color:var(--sub);flex-shrink:0}
+  .exit{font-size:10.5px;font-weight:700;color:#fff;background:#1d1d1f;
+    border-radius:5px;padding:2px 7px;flex-shrink:0;letter-spacing:.5px}
   .leg-eta{display:flex;align-items:center;gap:8px;margin-top:7px}
   .eta-k{font-size:10px;color:var(--sub);letter-spacing:1.5px;margin-top:1px}
   .eta-t{font-size:15.5px;font-weight:700;color:var(--txt);font-variant-numeric:tabular-nums;letter-spacing:.3px}
@@ -205,7 +207,7 @@
         <h3>抵达<span data-nav="深圳北站">深圳北站</span></h3>
         <p>出站步行至地铁约 15 分钟</p>
       </div>
-      <div class="leg" data-from="114.029962,22.610262,深圳北站" data-to="113.943370,22.539064,深大地铁站"><div class="leg-line"><span class="ln ln-5">5</span><span class="ll">深圳北站</span><span class="shaft"><span class="s-dir">赤湾方向</span><span class="s-line lc-5"></span><span class="s-stops">5 站</span></span><span class="ll">留仙洞</span></div><div class="leg-line"><span class="ln ln-13">13</span><span class="ll">留仙洞</span><span class="shaft"><span class="s-dir">深圳湾口岸方向</span><span class="s-line lc-13"></span><span class="s-stops">5 站</span></span><span class="ll">深大站</span><span class="lnote">A3 口出 正对校园正门</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">14:00</span><span class="eta-d">约 33 分钟</span></div></div>
+      <div class="leg" data-from="114.029962,22.610262,深圳北站" data-to="113.943370,22.539064,深大地铁站"><div class="leg-line"><span class="ln ln-5">5</span><span class="ll">深圳北站</span><span class="shaft"><span class="s-dir">赤湾方向</span><span class="s-line lc-5"></span><span class="s-stops">5 站</span></span><span class="ll">留仙洞</span></div><div class="leg-line"><span class="ln ln-13">13</span><span class="ll">留仙洞</span><span class="shaft"><span class="s-dir">深圳湾口岸方向</span><span class="s-line lc-13"></span><span class="s-stops">5 站</span></span><span class="ll">深大站</span><span class="exit">A3 口</span><span class="lnote">正对校园正门</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">14:00</span><span class="eta-d">约 33 分钟</span></div></div>
       <div class="stop">
         <div class="time">14:00–16:00</div>
         <h3><span data-nav="深圳大学粤海校区">深圳大学</span>粤海校区</h3>
@@ -216,20 +218,20 @@
           <span class="tag">停留约 2 小时</span>
         </div>
       </div>
-      <div class="leg" data-from="113.943370,22.539064,深大地铁站" data-to="113.919228,22.488991,水湾地铁站"><div class="walk"><b>步行</b> 深大正门 → 深大站 约 3 分钟</div><div class="leg-line"><span class="ln ln-1">1</span><span class="ll">深大站</span><span class="shaft"><span class="s-dir">机场东方向</span><span class="s-line lc-1"></span><span class="s-stops">2 站</span></span><span class="ll">世界之窗</span></div><div class="leg-line"><span class="ln ln-2">2</span><span class="ll">世界之窗</span><span class="shaft"><span class="s-dir">赤湾方向</span><span class="s-line lc-2"></span><span class="s-stops">7 站</span></span><span class="ll">水湾站</span><span class="lnote">D 口出 步行约 6 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">16:30</span><span class="eta-d">约 30 分钟</span></div></div>
+      <div class="leg" data-from="113.943370,22.539064,深大地铁站" data-to="113.919228,22.488991,水湾地铁站"><div class="walk"><b>步行</b> 深大正门 → 深大站 约 3 分钟</div><div class="leg-line"><span class="ln ln-1">1</span><span class="ll">深大站</span><span class="shaft"><span class="s-dir">机场东方向</span><span class="s-line lc-1"></span><span class="s-stops">2 站</span></span><span class="ll">世界之窗</span></div><div class="leg-line"><span class="ln ln-2">2</span><span class="ll">世界之窗</span><span class="shaft"><span class="s-dir">赤湾方向</span><span class="s-line lc-2"></span><span class="s-stops">7 站</span></span><span class="ll">水湾站</span><span class="exit">D 口</span><span class="lnote">步行约 6 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">16:30</span><span class="eta-d">约 30 分钟</span></div></div>
       <div class="stop">
         <div class="time">16:30–17:30</div>
         <h3><span data-nav="南海意库">南海意库</span> 咖啡</h3>
         <p>旧厂房创意园 独立咖啡馆</p>
         <div class="tagline"><span class="tag">停留约 1 小时</span></div>
       </div>
-      <div class="leg" data-from="113.919228,22.488991,水湾地铁站" data-to="113.943128,22.518702,后海地铁站"><div class="walk"><b>步行</b> 南海意库 → 水湾站 D 口 约 6 分钟</div><div class="leg-line"><span class="ln ln-2">2</span><span class="ll">水湾站</span><span class="shaft"><span class="s-dir">新秀方向</span><span class="s-line lc-2"></span><span class="s-stops">4 站</span></span><span class="ll">后海站</span><span class="lnote">G 口出 直达商场</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">17:50</span><span class="eta-d">约 20 分钟</span></div></div>
+      <div class="leg" data-from="113.919228,22.488991,水湾地铁站" data-to="113.943128,22.518702,后海地铁站"><div class="walk"><b>步行</b> 南海意库 → 水湾站 D 口 约 6 分钟</div><div class="leg-line"><span class="ln ln-2">2</span><span class="ll">水湾站</span><span class="shaft"><span class="s-dir">新秀方向</span><span class="s-line lc-2"></span><span class="s-stops">4 站</span></span><span class="ll">后海站</span><span class="exit">G 口</span><span class="lnote">直达商场</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">17:50</span><span class="eta-d">约 20 分钟</span></div></div>
       <div class="stop">
         <div class="time">17:50–19:00</div>
         <h3>晚饭 <span data-nav="海岸城购物中心">海岸城</span></h3>
         <div class="tagline"><span class="tag">停留约 1 小时 10 分</span></div>
       </div>
-      <div class="leg" data-from="113.943128,22.518702,后海地铁站" data-to="113.944084,22.512528,人才公园地铁站"><div class="leg-line"><span class="ln ln-13">13</span><span class="ll">后海站</span><span class="shaft"><span class="s-dir">深圳湾口岸方向</span><span class="s-line lc-13"></span><span class="s-stops">1 站</span></span><span class="ll">人才公园站</span><span class="lnote">B1 口出 步行约 11 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">19:15</span><span class="eta-d">约 15 分钟</span></div></div>
+      <div class="leg" data-from="113.943128,22.518702,后海地铁站" data-to="113.944084,22.512528,人才公园地铁站"><div class="leg-line"><span class="ln ln-13">13</span><span class="ll">后海站</span><span class="shaft"><span class="s-dir">深圳湾口岸方向</span><span class="s-line lc-13"></span><span class="s-stops">1 站</span></span><span class="ll">人才公园站</span><span class="exit">B1 口</span><span class="lnote">步行约 11 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">19:15</span><span class="eta-d">约 15 分钟</span></div></div>
       <div class="stop">
         <div class="time">19:15–20:10</div>
         <h3><span data-nav="人才公园深圳">人才公园</span>夜景</h3>
@@ -270,7 +272,7 @@
         <h3>回酒店 午餐休整</h3>
         <div class="tagline"><span class="tag">停留约 1 小时 20 分</span></div>
       </div>
-      <div class="leg" data-from="114.218965,22.718491,黄阁坑地铁站" data-to="114.220022,22.695191,大运中心地铁站"><div class="walk"><b>步行</b> 酒店 → 黄阁坑站 约 4 分钟</div><div class="leg-line"><span class="ln ln-16">16</span><span class="ll">黄阁坑站</span><span class="shaft"><span class="s-dir">大运方向</span><span class="s-line lc-16"></span><span class="s-stops">2 站</span></span><span class="ll">大运中心站</span><span class="lnote">C 口内场 D 口看台 步行至场馆约 6 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">12:50</span><span class="eta-d">约 20 分钟</span></div></div>
+      <div class="leg" data-from="114.218965,22.718491,黄阁坑地铁站" data-to="114.220022,22.695191,大运中心地铁站"><div class="walk"><b>步行</b> 酒店 → 黄阁坑站 约 4 分钟</div><div class="leg-line"><span class="ln ln-16">16</span><span class="ll">黄阁坑站</span><span class="shaft"><span class="s-dir">大运方向</span><span class="s-line lc-16"></span><span class="s-stops">2 站</span></span><span class="ll">大运中心站</span><span class="exit">C 口</span><span class="lnote">内场</span><span class="exit">D 口</span><span class="lnote">看台 步行至场馆约 6 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">12:50</span><span class="eta-d">约 20 分钟</span></div></div>
       <div class="stop">
         <div class="time">12:50–19:00</div>
         <h3><span data-nav="深圳大运中心体育场">大运中心</span>片区</h3>
