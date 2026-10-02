@@ -3,583 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#f5f5f7">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<title>深圳之旅 · 10.04–10.06</title>
+<title>🔒</title>
 <style>
-  :root{
-    --bg:#f5f5f7; --card:#ffffff; --line:#e8e8ed;
-    --txt:#1d1d1f; --sub:#86868b;
-    --blue:#0071e3; --blue-bg:#eaf3ff;
-    --green:#34c759; --green-bg:#eaf9ef;
-    --orange:#ff9500; --orange-bg:#fff4e0;
-    --purple:#af52de; --purple-bg:#f5ecfd;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-  body{
-    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-    background:var(--bg);color:var(--txt);min-height:100vh;line-height:1.6;
-    padding-bottom:env(safe-area-inset-bottom);
-  }
-  .wrap{max-width:640px;margin:0 auto;padding:0 16px 60px}
-
-  header{text-align:center;padding:42px 0 6px}
-  .badge{display:inline-block;font-size:12px;font-weight:600;letter-spacing:2px;
-    color:var(--purple);background:var(--purple-bg);
-    border-radius:999px;padding:5px 14px;margin-bottom:14px}
-  h1{font-size:30px;font-weight:700;letter-spacing:.5px}
-  h1 small{display:block;font-size:14px;font-weight:400;color:var(--sub);margin-top:6px;letter-spacing:1px}
-
-  .quick{display:grid;grid-template-columns:1fr;gap:10px;margin:24px 0 8px}
-  .q-card{background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:14px 16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-  .q-card .v-title{font-size:15.5px;font-weight:700}
-  .q-card .v-loc{font-size:14px;font-weight:600;color:var(--blue);margin-top:2px;cursor:pointer}
-  .q-card .v-loc:active{opacity:.5}
-  .q-card .v-time{font-size:12.5px;color:var(--sub);margin-top:3px}
-  .v-time .hl{color:var(--purple)}
-  [data-nav]{cursor:pointer}
-
-  /* 导航选择弹窗（iOS Action Sheet 风） */
-  .sheet-mask{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4);
-    display:none;align-items:flex-end;justify-content:center}
-  .sheet-mask.show{display:flex}
-  .sheet{width:100%;max-width:640px;padding:0 10px calc(10px + env(safe-area-inset-bottom));
-    animation:sheetUp .22s ease}
-  @keyframes sheetUp{from{transform:translateY(30px);opacity:.6}to{transform:translateY(0);opacity:1}}
-  .sheet-group{background:var(--card);border-radius:14px;overflow:hidden;margin-bottom:8px}
-  .sheet-title{font-size:13px;color:var(--sub);text-align:center;padding:14px 16px;
-    border-bottom:1px solid var(--line);letter-spacing:.3px}
-  .sheet-btn{display:block;width:100%;font-size:17px;font-weight:500;color:var(--blue);line-height:1.4;
-    background:none;border:none;border-bottom:1px solid var(--line);padding:16px 14px;cursor:pointer;
-    font-family:inherit;text-align:center;-webkit-tap-highlight-color:transparent}
-  .sheet-btn:last-child{border-bottom:none}
-  .sheet-btn:active{background:var(--bg)}
-  .sheet-cancel{display:block;width:100%;font-size:17px;font-weight:600;color:var(--txt);
-    background:var(--card);border:none;border-radius:14px;padding:16px 14px;cursor:pointer;
-    font-family:inherit;-webkit-tap-highlight-color:transparent}
-
-  /* 打卡进度 */
-  .progress{position:sticky;top:62px;z-index:50;display:flex;align-items:center;gap:10px;
-    background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-    border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin:18px 0 4px;
-    box-shadow:0 1px 3px rgba(0,0,0,.05)}
-  .progress .p-label{font-size:12.5px;font-weight:600;white-space:nowrap}
-  .progress .p-label em{font-style:normal;color:var(--blue)}
-  .bar{flex:1;height:6px;border-radius:999px;background:var(--line);overflow:hidden}
-  .bar i{display:block;height:100%;width:0;border-radius:999px;
-    background:var(--blue);transition:width .4s ease}
-  .p-reset{flex-shrink:0;font-size:12px;color:var(--sub);background:none;border:1px solid var(--line);
-    border-radius:999px;padding:3px 12px;cursor:pointer}
-
-  .day{margin-top:30px}
-  .day-head{margin-bottom:12px}
-  .day-num{width:54px;height:54px;border-radius:14px;display:flex;flex-direction:column;
-    align-items:center;justify-content:center;background:var(--card);
-    border:1px solid var(--line);box-shadow:0 1px 3px rgba(0,0,0,.05)}
-  .day-num b{font-size:21px;font-weight:700;line-height:1.1}
-  .day-num span{font-size:10px;font-weight:600;color:#ff3b30;letter-spacing:1px}
-  .stop h3 [data-nav]{color:var(--blue)}
-  .leg{display:block;padding:0 0 12px 2px;margin:-2px 0 12px}
-  .leg-route{display:flex;align-items:center;flex-wrap:wrap;gap:5px}
-  .leg-eta{font-size:12px;color:var(--sub);margin-top:4px;text-align:right}
-  .leg[data-from],.leg[data-nav]{cursor:pointer}
-  .leg[data-from]:active,.leg[data-nav]:active{opacity:.6}
-  .ln{width:22px;height:22px;border-radius:50%;color:#fff;font-size:12px;font-weight:700;
-    display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
-  .ln-1{background:#00a651}
-  .ln-2{background:#f08300}
-  .ln-5{background:#8f4dbf}
-  .ln-11{background:#5c2e91}
-  .ln-13{background:#8c9bab}
-  .ln-14{background:#e8b410;color:#3a2c00}
-  .ln-16{background:#a9683a}
-  .ln.tk{width:auto;padding:0 9px;border-radius:999px;background:#e3e3e8;color:var(--sub);font-size:11px;font-weight:500}
-  .jump{width:9px;height:2px;background:#c9c9cf;display:inline-block;flex-shrink:0}
-  .leg-line{display:flex;align-items:center;flex-wrap:wrap;gap:3px 5px;padding:2.5px 0}
-  .ll{font-size:13.5px;font-weight:600;color:var(--txt);flex-shrink:0}
-  .shaft{display:inline-flex;flex-direction:column;align-items:center;flex-shrink:0;padding:0 4px}
-  .s-dir{font-size:10px;color:var(--sub);line-height:1.3;white-space:nowrap}
-  .s-line{width:100%;min-width:44px;border-top:1.5px solid #c9c9cf;margin:2px 0}
-  .s-stops{font-size:10px;color:var(--sub);line-height:1.3;white-space:nowrap}
-  .lnote{font-size:11px;color:var(--sub);flex-shrink:0}
-  .exit{font-size:10.5px;font-weight:700;color:#fff;background:#1d1d1f;
-    border-radius:5px;padding:2px 7px;flex-shrink:0;letter-spacing:.5px}
-  .leg-eta{display:flex;align-items:center;gap:8px;margin-top:7px}
-  .eta-k{font-size:10px;color:var(--sub);letter-spacing:1.5px;margin-top:1px}
-  .eta-t{font-size:15.5px;font-weight:700;color:var(--txt);font-variant-numeric:tabular-nums;letter-spacing:.3px}
-  .eta-d{font-size:10.5px;color:#6e6e73;background:rgba(255,255,255,.55);
-    backdrop-filter:blur(8px) saturate(1.7);-webkit-backdrop-filter:blur(8px) saturate(1.7);
-    border:0.5px solid rgba(255,255,255,.75);border-radius:999px;padding:2px 10px;margin-top:1px;
-    box-shadow:0 1px 4px rgba(0,0,0,.07),inset 0 1px 0 rgba(255,255,255,.7)}
-  .ic{width:14px;height:14px;color:var(--sub);flex-shrink:0}
-  img.ic{opacity:.7;vertical-align:-2px;-webkit-user-drag:none;user-select:none}
-  .walk{display:flex;align-items:center;flex-wrap:wrap;gap:3px 5px;font-size:11px;color:var(--sub);padding:1px 0 2px;line-height:1.5}
-  .way{font-size:12px;font-weight:600;color:#6e6e73;flex-shrink:0;letter-spacing:.5px}
-  .warr{color:var(--blue);font-weight:700;font-size:13px;flex-shrink:0}
-  .wh{display:inline-flex;align-items:center;gap:3px;width:44px;flex-shrink:0}
-  .s-line.lc-1{border-color:rgba(0,166,81,.55)}
-  .s-line.lc-2{border-color:rgba(240,131,0,.55)}
-  .s-line.lc-5{border-color:rgba(143,77,191,.55)}
-  .s-line.lc-11{border-color:rgba(92,46,145,.55)}
-  .s-line.lc-13{border-color:rgba(140,155,171,.65)}
-  .s-line.lc-14{border-color:rgba(232,180,16,.7)}
-  .s-line.lc-16{border-color:rgba(169,104,58,.55)}
-  .ld{font-size:11px;color:var(--sub);background:var(--bg);border-radius:999px;padding:2px 8px}
-
-  .tl{position:relative;padding-left:20px}
-  .tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:2px;background:var(--line)}
-  .stop{position:relative;margin-bottom:12px;background:var(--card);border:1px solid var(--line);
-    border-radius:16px;padding:13px 44px 13px 15px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-  .stop::before{content:"";position:absolute;left:-19px;top:18px;width:10px;height:10px;border-radius:50%;
-    background:var(--blue)}
-  .stop.hi::before{background:var(--purple)}
-  .time{display:inline-block;font-size:12px;font-weight:700;color:var(--blue);
-    background:var(--blue-bg);border-radius:6px;padding:2px 8px;margin-bottom:6px;white-space:nowrap}
-  .stop.hi .time{color:var(--purple);background:var(--purple-bg)}
-  .stop h3{font-size:16px;font-weight:700;margin-bottom:2px}
-  .stop p{font-size:13.5px;color:var(--sub)}
-  .stop p b{color:var(--txt);font-weight:600}
-  .tagline{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
-  .tag{font-size:11px;padding:3px 9px;border-radius:999px;background:var(--bg);color:var(--sub)}
-  .tag.f{color:var(--orange);background:var(--orange-bg)}
-
-.seg{display:flex;background:#e8e8ed;border-radius:10px;padding:2.5px;margin:18px 0 4px;position:sticky;top:8px;z-index:40}
-  .seg button{flex:1;font-size:13.5px;font-weight:600;color:var(--sub);background:none;border:none;
-    border-radius:8px;padding:8px 0;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
-  .seg button.on{background:#fff;color:var(--txt);box-shadow:0 1px 4px rgba(0,0,0,.1)}
-  .seg.sub{position:static;margin:14px 0 10px}
-  .tabpane[hidden]{display:none}
-  .seat-list{display:grid;gap:10px}
-  .seat-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px 12px 48px;
-    display:flex;align-items:baseline;justify-content:space-between;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-  .seat-card .tick2{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:24px;height:24px;
-    border-radius:50%;border:1.5px solid var(--line);background:var(--card);cursor:pointer;padding:0;
-    display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;
-    -webkit-appearance:none;transition:all .2s}
-  .seat-card .tick2:active{transform:translateY(-50%) scale(.85)}
-  .seat-card.done .tick2{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
-  .seat-card.done .seat-name{color:var(--sub);text-decoration:line-through}
-  .seat-card.done .seat-pos{opacity:.4}
-  .seat-name{font-size:15.5px;font-weight:700}
-  .seat-pos{font-size:14px}
-  .seat-pos b{color:var(--purple);font-weight:600}
-  .empty{border:1.5px dashed #d5d5da;border-radius:16px;padding:34px 20px;text-align:center;color:var(--sub);font-size:13px;line-height:1.7}
-.sign-head{display:flex;align-items:center;gap:10px;margin:22px 0 10px}
-  .sign-head h4{font-size:15px;font-weight:700}
-  .sign-head .sg-num{font-size:12px;color:var(--purple);font-weight:600}
-  .seg.mini{position:static;margin:0 0 10px;padding:2px}
-  .seg.mini button{font-size:12.5px;padding:6px 0}
-  .sign-list{display:grid;gap:9px}
-  .sign-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;
-    padding:11px 14px 11px 48px;box-shadow:0 1px 3px rgba(0,0,0,.05);display:flex;align-items:baseline;gap:10px}
-  .sign-card .tick2{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:24px;height:24px;
-    border-radius:50%;border:1.5px solid var(--line);background:var(--card);cursor:pointer;padding:0;
-    display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;
-    -webkit-appearance:none;transition:all .2s}
-  .sign-card .tick2:active{transform:translateY(-50%) scale(.85)}
-  .sign-card.done .tick2{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
-  .sign-card.done .sign-name{color:var(--sub);text-decoration:line-through}
-  .sign-card.done .sign-pos{opacity:.4}
-  .sign-name{font-size:15px;font-weight:700}
-  .sign-pos{font-size:13px;color:var(--purple);font-weight:600}
-  .sign-empty{border:1.5px dashed #d5d5da;border-radius:14px;padding:22px 16px;text-align:center;color:var(--sub);font-size:12.5px}
-  footer{text-align:center;margin-top:44px;font-size:12px;color:var(--sub)}
-  footer .heart{color:var(--purple)}
-
-  /* 勾选钮 */
-  .tick{position:absolute;top:12px;right:12px;width:27px;height:27px;border-radius:50%;
-    border:1.5px solid var(--line);background:var(--card);cursor:pointer;padding:0;
-    display:flex;align-items:center;justify-content:center;font-size:14px;color:transparent;
-    -webkit-appearance:none;transition:all .2s}
-  .tick:active{transform:scale(.85)}
-  .stop.done .tick{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
-  .stop.done h3{color:var(--sub);text-decoration:line-through}
-  .stop.done p,.stop.done .tagline,.stop.done .time{opacity:.4;transition:opacity .3s}
-  .stop.done::before{background:var(--green)}
-
-  /* 回顶部 */
-  .to-top{position:fixed;right:16px;bottom:calc(20px + env(safe-area-inset-bottom));z-index:60;
-    width:42px;height:42px;border-radius:50%;border:1px solid var(--line);cursor:pointer;
-    background:rgba(255,255,255,.92);backdrop-filter:blur(8px);color:var(--txt);font-size:17px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);opacity:0;pointer-events:none;transition:opacity .3s}
-  .to-top.show{opacity:1;pointer-events:auto}
+  :root{--txt:#1d1d1f;--sub:#86868b;--line:#e8e8ed;--purple:#af52de;--purple-bg:#f5ecfd}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;background:#f5f5f7;
+    color:var(--txt);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .box{width:100%;max-width:340px;background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:34px 26px 28px;box-shadow:0 2px 12px rgba(0,0,0,.06);text-align:center}
+  .lock{font-size:34px;margin-bottom:10px}
+  h1{font-size:18px;font-weight:700;letter-spacing:.5px}
+  .hint{font-size:12.5px;color:var(--sub);margin-top:6px;line-height:1.6}
+  input{width:100%;font-size:17px;font-weight:600;letter-spacing:2px;text-align:center;
+    border:1.5px solid var(--line);border-radius:12px;padding:13px;margin-top:20px;outline:none;
+    -webkit-text-security:disc;font-family:inherit}
+  input:focus{border-color:var(--purple)}
+  button{width:100%;font-size:16px;font-weight:700;color:#fff;background:var(--purple);
+    border:none;border-radius:12px;padding:14px;margin-top:14px;cursor:pointer;font-family:inherit}
+  button:active{opacity:.75}
+  .err{font-size:12.5px;color:#ff3b30;margin-top:12px;min-height:16px}
+  .spin{display:inline-block;width:16px;height:16px;border:2px solid #d8d8dd;border-top-color:var(--purple);
+    border-radius:50%;animation:r .7s linear infinite;vertical-align:-3px;margin-right:6px}
+  @keyframes r{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
-<div class="wrap">
-
-  <header>
-    <div class="badge">I AM GLORIA · 世界巡回演唱会</div>
-    <h1>深圳 3 天 2 晚<small>2026.10.04-2026.10.06</small></h1>
-  </header>
-
-  <div class="seg" id="mainTabs">
-    <button data-tab="trip" class="on">行程</button>
-    <button data-tab="seats">座位表</button>
-  </div>
-
-  <!-- ============ 行程 ============ -->
-  <section class="tabpane" id="tab-trip">
-
-  <!-- 快览 -->
-  <section class="quick">
-    <div class="q-card">
-      <div class="v-title">邓紫棋《I AM GLORIA》演唱会</div>
-      <div class="v-loc" data-nav="深圳大运中心体育场">大运中心体育场</div>
-      <div class="v-time">10.5 周一 <span class="hl">19:00</span></div>
-    </div>
-    <div class="q-card">
-      <div class="v-title">酒店</div>
-      <div class="v-loc" data-nav="皇朝印象酒店龙岗中心大运新城店">皇朝印象酒店（龙岗中心大运新城店）</div>
-      <div class="v-time"><span class="hl">10.4</span> 入住 <span class="hl">10.6</span> 退房</div>
-    </div>
-    <div class="q-card">
-      <div class="v-title">动车</div>
-      <div class="v-loc" data-nav="深圳北站">深圳北 → 厦门北</div>
-      <div class="v-time"><span class="hl">10.6 晚 18:04</span> 出发 21:36 到</div>
-    </div>
-  </section>
-
-  <!-- 打卡进度 -->
-  <div class="progress" id="progress">
-    <span class="p-label">进度 <em id="pnum">0/0</em></span>
-    <div class="bar"><i id="pbar"></i></div>
-    <button class="p-reset" id="preset">重置</button>
-  </div>
-
-  <!-- Day 1 -->
-  <section class="day">
-    <div class="day-head">
-      <div class="day-num"><span>SUN</span><b>04</b></div>
-    </div>
-                    <div class="tl">
-      <div class="stop">
-        <div class="time">12:37–13:00</div>
-        <h3>抵达<span data-nav="深圳北站">深圳北站</span></h3>
-        <p>出站步行至地铁约 15 分钟</p>
-      </div>
-      <div class="leg" data-from="114.029962,22.610262,深圳北站" data-to="113.943370,22.539064,深大地铁站"><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-5">5</span><span class="ll">深圳北站</span><span class="shaft"><span class="s-dir">赤湾方向</span><span class="s-line lc-5"></span><span class="s-stops">5 站</span></span><span class="ll">留仙洞</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-13">13</span><span class="ll">留仙洞</span><span class="shaft"><span class="s-dir">深圳湾口岸方向</span><span class="s-line lc-13"></span><span class="s-stops">5 站</span></span><span class="ll">深大站</span><span class="exit">A3 口</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">14:00</span><span class="eta-d">约 33 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">14:00–16:00</div>
-        <h3><span data-nav="深圳大学粤海校区">深圳大学粤海校区</span></h3>
-        <p>文山湖 荔枝林 杜衡图书馆</p>
-        <div class="tagline">
-          <span class="tag f">入校需预约 小程序「深圳大学校园参观预约」</span>
-          <span class="tag">17:30 放号 国庆名额 9/30 起抢</span>
-          </div>
-      </div>
-      <div class="leg" data-from="113.943370,22.539064,深大地铁站" data-to="113.919228,22.488991,水湾地铁站"><div class="walk"><span class="wh"><img class="ic" src="icons/walk.png?v=5" alt=""><span class="way">步行</span></span><span class="ll">深大正门</span><span class="warr">→</span><span class="ll">深大站</span><span class="eta-d">约 3 分钟</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-1">1</span><span class="ll">深大站</span><span class="shaft"><span class="s-dir">机场东方向</span><span class="s-line lc-1"></span><span class="s-stops">2 站</span></span><span class="ll">世界之窗</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-2">2</span><span class="ll">世界之窗</span><span class="shaft"><span class="s-dir">赤湾方向</span><span class="s-line lc-2"></span><span class="s-stops">7 站</span></span><span class="ll">水湾站</span><span class="exit">D 口</span></div><div class="walk"><span class="wh"><img class="ic" src="icons/walk.png?v=5" alt=""><span class="way">步行</span></span><span class="ll">D 口</span><span class="warr">→</span><span class="ll">南海意库</span><span class="eta-d">约 6 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">16:30</span><span class="eta-d">约 30 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">16:30–17:30</div>
-        <h3><span data-nav="南海意库">南海意库</span> 咖啡</h3>
-        <p>旧厂房创意园 独立咖啡馆</p>
-        </div>
-      <div class="leg" data-from="113.919228,22.488991,水湾地铁站" data-to="113.943128,22.518702,后海地铁站"><div class="walk"><span class="wh"><img class="ic" src="icons/walk.png?v=5" alt=""><span class="way">步行</span></span><span class="ll">南海意库</span><span class="warr">→</span><span class="ll">水湾站 D 口</span><span class="eta-d">约 6 分钟</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-2">2</span><span class="ll">水湾站</span><span class="shaft"><span class="s-dir">新秀方向</span><span class="s-line lc-2"></span><span class="s-stops">4 站</span></span><span class="ll">后海站</span><span class="exit">G 口</span></div><div class="walk"><span class="wh"><img class="ic" src="icons/walk.png?v=5" alt=""><span class="way">步行</span></span><span class="ll">G 口</span><span class="warr">→</span><span class="ll">海岸城</span><span class="eta-d">出站即达</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">17:50</span><span class="eta-d">约 20 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">17:50–19:00</div>
-        <h3>晚饭 <span data-nav="海岸城购物中心">海岸城</span></h3>
-        </div>
-      <div class="leg" data-from="113.943128,22.518702,后海地铁站" data-to="113.944084,22.512528,人才公园地铁站"><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-13">13</span><span class="ll">后海站</span><span class="shaft"><span class="s-dir">深圳湾口岸方向</span><span class="s-line lc-13"></span><span class="s-stops">1 站</span></span><span class="ll">人才公园站</span><span class="exit">B1 口</span></div><div class="walk"><span class="wh"><img class="ic" src="icons/walk.png?v=5" alt=""><span class="way">步行</span></span><span class="ll">B1 口</span><span class="warr">→</span><span class="ll">人才公园</span><span class="eta-d">约 11 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">19:15</span><span class="eta-d">约 15 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">19:15–20:10</div>
-        <h3><span data-nav="人才公园深圳">人才公园</span>夜景</h3>
-        <p>春笋大厦灯光 湖面倒影</p>
-        </div>
-      <div class="leg" data-from="113.944084,22.512528,人才公园地铁站" data-to="114.068616,22.537704,岗厦北地铁站"><div class="walk"><span class="wh"><img class="ic" src="icons/walk.png?v=5" alt=""><span class="way">步行</span></span><span class="ll">人才公园</span><span class="warr">→</span><span class="ll">人才公园站 B1 口</span><span class="eta-d">约 11 分钟</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-13">13</span><span class="ll">人才公园站</span><span class="shaft"><span class="s-dir">上屋北方向</span><span class="s-line lc-13"></span><span class="s-stops">1 站</span></span><span class="ll">后海站</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-11">11</span><span class="ll">后海站</span><span class="shaft"><span class="s-dir">福田方向</span><span class="s-line lc-11"></span><span class="s-stops">2 站</span></span><span class="ll">岗厦北站</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">20:35</span><span class="eta-d">约 25 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">20:35–21:05</div>
-        <h3><span data-nav="岗厦北地铁站">岗厦北地铁站</span>打卡</h3>
-        <p>深圳之眼巨型天窗</p>
-        </div>
-      <div class="leg" data-from="114.068616,22.537704,岗厦北地铁站" data-to="114.218965,22.718491,黄阁坑地铁站"><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-14">14</span><span class="ll">岗厦北站</span><span class="shaft"><span class="s-dir">沙田方向</span><span class="s-line lc-14"></span><span class="s-stops">8 站</span></span><span class="ll">大运站</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-16">16</span><span class="ll">大运站</span><span class="shaft"><span class="s-dir">田心方向</span><span class="s-line lc-16"></span><span class="s-stops">3 站</span></span><span class="ll">黄阁坑站</span></div><div class="walk"><span class="wh"><img class="ic" src="icons/walk.png?v=5" alt=""><span class="way">步行</span></span><span class="ll">黄阁坑站</span><span class="warr">→</span><span class="ll" data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span><span class="eta-d">约 4 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">21:50</span><span class="eta-d">约 45 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">21:50</div>
-        <h3>返回<span data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span>入住</h3>
-      </div>
-    </div>
-  </section>
-
-  <!-- Day 2 -->
-  <section class="day">
-    <div class="day-head">
-      <div class="day-num"><span>MON</span><b>05</b></div>
-    </div>
-                        <div class="tl">
-      <div class="leg" data-nav="鹤湖新居"><div class="leg-line"><span class="wh"><img class="ic" src="icons/taxi.png?v=5" alt=""><span class="way">打车</span></span><span class="ll" data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span><span class="shaft"><span class="s-dir">约 10 分钟</span><span class="s-line"></span><span class="s-stops"></span></span><span class="ll">鹤湖新居</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">09:30</span><span class="eta-d">约 10 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">09:30–11:00</div>
-        <h3><span data-nav="鹤湖新居">鹤湖新居</span></h3>
-        <p>客家围屋</p>
-        </div>
-      <div class="leg" data-nav="皇朝印象酒店龙岗中心大运新城店"><div class="leg-line"><span class="wh"><img class="ic" src="icons/taxi.png?v=5" alt=""><span class="way">打车</span></span><span class="ll">鹤湖新居</span><span class="shaft"><span class="s-dir">约 10 分钟</span><span class="s-line"></span><span class="s-stops"></span></span><span class="ll" data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">11:10</span><span class="eta-d">约 10 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">11:10–12:30</div>
-        <h3>回<span data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span> 午餐休整</h3>
-        </div>
-      <div class="leg" data-from="114.218965,22.718491,黄阁坑地铁站" data-to="114.220022,22.695191,大运中心地铁站"><div class="walk"><span class="wh"><img class="ic" src="icons/walk.png?v=5" alt=""><span class="way">步行</span></span><span class="ll" data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span><span class="warr">→</span><span class="ll">黄阁坑站</span><span class="eta-d">约 4 分钟</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-16">16</span><span class="ll">黄阁坑站</span><span class="shaft"><span class="s-dir">大运方向</span><span class="s-line lc-16"></span><span class="s-stops">2 站</span></span><span class="ll">大运中心站</span><span class="exit">C 口</span><span class="lnote">内场</span></div><div class="walk"><span class="wh"><img class="ic" src="icons/walk.png?v=5" alt=""><span class="way">步行</span></span><span class="ll">出站</span><span class="warr">→</span><span class="ll">大运中心体育场</span><span class="eta-d">约 6 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">12:50</span><span class="eta-d">约 20 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">12:50–19:00</div>
-        <h3><span data-nav="深圳大运中心体育场">大运中心</span>片区</h3>
-        <p>官方应援物领取 见朋友 晚餐在周边解决</p>
-        </div>
-      <div class="stop hi">
-        <div class="time">19:00–22:00</div>
-        <h3>I AM GLORIA 演唱会</h3>
-        </div>
-      <div class="leg" data-from="114.220022,22.695191,大运中心地铁站" data-to="114.218965,22.718491,黄阁坑地铁站"><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-16">16</span><span class="ll">大运中心站</span><span class="shaft"><span class="s-dir">田心方向</span><span class="s-line lc-16"></span><span class="s-stops">2 站</span></span><span class="ll">黄阁坑站</span><span class="lnote">或打车 约 10 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">22:20</span><span class="eta-d">约 20 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">22:20</div>
-        <h3>散场回<span data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span></h3>
-      </div>
-    </div>
-  </section>
-
-  <!-- Day 3 -->
-  <section class="day">
-    <div class="day-head">
-      <div class="day-num"><span>TUE</span><b>06</b></div>
-    </div>
-                        <div class="tl">
-      <div class="stop">
-        <div class="time">09:00–09:10</div>
-        <h3>退房出发</h3>
-        <p>早餐后直接退房 拖包出行李</p>
-      </div>
-      <div class="leg" data-from="114.218965,22.718491,黄阁坑地铁站" data-to="114.111075,22.545852,大剧院地铁站"><div class="walk"><span class="wh"><img class="ic" src="icons/walk.png?v=5" alt=""><span class="way">步行</span></span><span class="ll" data-nav="皇朝印象酒店龙岗中心大运新城店">酒店</span><span class="warr">→</span><span class="ll">黄阁坑站</span><span class="eta-d">约 4 分钟</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-16">16</span><span class="ll">黄阁坑站</span><span class="shaft"><span class="s-dir">大运方向</span><span class="s-line lc-16"></span><span class="s-stops">3 站</span></span><span class="ll">大运站</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-14">14</span><span class="ll">大运站</span><span class="shaft"><span class="s-dir">岗厦北方向</span><span class="s-line lc-14"></span><span class="s-stops">8 站</span></span><span class="ll">岗厦北站</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-2">2</span><span class="ll">岗厦北站</span><span class="shaft"><span class="s-dir">赤湾方向</span><span class="s-line lc-2"></span><span class="s-stops">3 站</span></span><span class="ll">大剧院站</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">10:00</span><span class="eta-d">约 50 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">10:00–14:30</div>
-        <h3><span data-nav="深圳万象城">深圳万象城</span> OPS</h3>
-        <p>OPS 购物 午饭商场解决</p>
-      </div>
-      <div class="leg" data-from="114.111075,22.545852,大剧院地铁站" data-to="114.029962,22.610262,深圳北站"><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-1">1</span><span class="ll">大剧院站</span><span class="shaft"><span class="s-dir">机场东方向</span><span class="s-line lc-1"></span><span class="s-stops">4 站</span></span><span class="ll">会展中心</span></div><div class="leg-line"><span class="wh"><img class="ic" src="icons/metro.png?v=5" alt=""><span class="way">地铁</span></span><span class="ln ln-4">4</span><span class="ll">会展中心</span><span class="shaft"><span class="s-dir">牛湖方向</span><span class="s-line lc-4"></span><span class="s-stops">7 站</span></span><span class="ll">深圳北站</span><span class="lnote">站内步行至候车厅约 10 分钟</span></div><div class="leg-eta"><span class="eta-k">预计到达</span><span class="eta-t">15:15</span><span class="eta-d">约 40 分钟</span></div></div>
-      <div class="stop">
-        <div class="time">15:15–18:04</div>
-        <h3><span data-nav="深圳北站">深圳北站</span>候车</h3>
-      </div>
-      <div class="stop">
-        <div class="time">18:04–21:36</div>
-        <h3>G4036 动车返厦门</h3>
-        <p>21:36 到厦门北</p>
-      </div>
-    </div>
-  </section>
-
-  </section>
-
-  <!-- ============ 座位表 ============ -->
-  <section class="tabpane" id="tab-seats" hidden>
-    <div class="sign-head"><h4>签名进度</h4><span class="sg-num" id="sgNum"></span></div>
-    <div class="seg sub" id="seatTabs">
-      <button data-seat="nei" class="on">内场</button>
-      <button data-seat="tai">看台</button>
-      <button data-seat="unk">未知</button>
-      <button data-seat="done">已签</button>
-    </div>
-    <div id="seat-nei">
-      <div class="seat-list">
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">老犬</span><span class="seat-pos"><b>VIP1 区 12 排 12 座</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">讨厌桌子乱</span><span class="seat-pos"><b>VIP1 区 15 排 9 座</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">朝姜</span><span class="seat-pos"><b>VIP2 区 27 排 62 座</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">璐璐姐</span><span class="seat-pos"><b>跟朝姜连坐</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">小土豆</span><span class="seat-pos"><b>VIP2 区 31 排 30 座</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">小鱼仔</span><span class="seat-pos"><b>VIP2 区 31 排 31 座</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">噜噜鱼</span><span class="seat-pos"><b>VIP2 区</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">qween莹莹</span></div>
-      </div>
-    </div>
-    <div id="seat-unk" hidden>
-      <div class="seat-list">
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">lulufinite</span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">Chrismi</span></div>
-      </div>
-    </div>
-    <div id="seat-done" hidden>
-      <div class="seat-list" id="doneList"></div>
-    </div>
-    <div id="seat-preset" hidden>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">HAO轩</span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">港少</span></div>
-    </div>
-    <div id="seat-tai" hidden>
-      <div class="seat-list">
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">小鱼</span><span class="seat-pos"><b>124 区 10 排 4 座</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">小Lulu唯懿</span><span class="seat-pos"><b>124 区</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">五花肉</span><span class="seat-pos"><b>125 区 23 排 31 座</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">海南小孩姐</span><span class="seat-pos"><b>125 或 126 区</b></span></div>
-        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">独奏</span><span class="seat-pos"><b>304 区 2 排 16 座</b></span></div>
-      </div>
-    </div>
-
-  </section>
-
-  <footer>
-    深圳见 · <span class="heart">GLORIA</span> · 10.04 – 10.06
-  </footer>
+<div class="box">
+  <div class="lock">🔐</div>
+  <h1>此内容已加密</h1>
+  <div class="hint">输入访问密码解锁<br>解锁一次后本设备将保持解锁</div>
+  <input id="pw" type="password" placeholder="访问密码" autocomplete="off">
+  <button id="go">解锁</button>
+  <div class="err" id="err"></div>
 </div>
-
-<!-- 导航选择弹窗 -->
-<div class="sheet-mask" id="sheetMask">
-  <div class="sheet">
-    <div class="sheet-group">
-      <div class="sheet-title" id="sheetTitle">导航到目的地</div>
-      <button class="sheet-btn" id="navAmap">高德地图</button>
-      <button class="sheet-btn" id="navBaidu">百度地图</button>
-    </div>
-    <button class="sheet-cancel" id="sheetCancel">取消</button>
-  </div>
-</div>
-<button class="to-top" id="toTop" aria-label="回顶部">↑</button>
 <script>
 (function(){
-  var KEY = 'sztrip-2604-v1';
-  var stops = Array.prototype.slice.call(document.querySelectorAll('.stop'));
-  var saved = {};
-  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e) { saved = {}; }
-
-  var pnum = document.getElementById('pnum');
-  var pbar = document.getElementById('pbar');
-
-  function update(){
-    var n = stops.filter(function(s){ return s.classList.contains('done'); }).length;
-    pnum.textContent = n + '/' + stops.length;
-    pbar.style.width = (stops.length ? Math.round(n / stops.length * 100) : 0) + '%';
+  var VAULT_KEY = 'sztrip-pw-v1';
+  var b64 = function(s){ return Uint8Array.from(atob(s), function(c){ return c.charCodeAt(0); }); };
+  function unlock(pw, cb){
+    fetch('vault.dat').then(function(r){ return r.text(); }).then(function(t){
+      var d = JSON.parse(t);
+      return crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey'])
+        .then(function(ki){
+          return crypto.subtle.deriveKey(
+            {name:'PBKDF2', salt: b64(d.salt), iterations: 120000, hash: 'SHA-256'},
+            ki, {name:'AES-GCM', length: 256}, false, ['decrypt']);
+        })
+        .then(function(key){
+          return crypto.subtle.decrypt({name:'AES-GCM', iv: b64(d.iv)}, key, b64(d.ct));
+        })
+        .then(function(buf){
+          cb(new TextDecoder().decode(buf));
+        });
+    }).catch(function(){ cb(null); });
   }
-
-  stops.forEach(function(s, i){
-    var id = 's' + i;
-    s.dataset.id = id;
-    var btn = document.createElement('button');
-    btn.className = 'tick';
-    btn.setAttribute('aria-label', '打卡');
-    btn.innerHTML = '&#10003;';
-    btn.addEventListener('click', function(ev){
-      ev.stopPropagation();
-      s.classList.toggle('done');
-      saved[id] = s.classList.contains('done');
-      if (!saved[id]) delete saved[id];
-      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e) {}
-      update();
-    });
-    s.appendChild(btn);
-    if (saved[id]) s.classList.add('done');
-  });
-
-  document.getElementById('preset').addEventListener('click', function(){
-    stops.forEach(function(s){ s.classList.remove('done'); });
-    saved = {};
-    try { localStorage.removeItem(KEY); } catch(e) {}
-    update();
-  });
-
-  document.addEventListener('gesturestart', function(e){ e.preventDefault(); }, { passive: false });
-  document.addEventListener('gesturechange', function(e){ e.preventDefault(); }, { passive: false });
-  document.addEventListener('touchmove', function(e){ if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
-  var toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', function(){
-    toTop.classList.toggle('show', window.scrollY > 600);
-  }, { passive: true });
-  toTop.addEventListener('click', function(){
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-
-  update();
-
-  // Tab 切换
-  function switchTab(name){
-    document.querySelectorAll('#mainTabs button').forEach(function(b){
-      b.classList.toggle('on', b.dataset.tab === name);
-    });
-    ['trip','seats'].forEach(function(t){
-      document.getElementById('tab-' + t).hidden = (t !== name);
-    });
-    window.scrollTo({ top: 0 });
+  function render(html){
+    document.open(); document.write(html); document.close();
   }
-  document.querySelectorAll('#mainTabs button').forEach(function(b){
-    b.addEventListener('click', function(){ switchTab(b.dataset.tab); });
-  });
-  // 签名进度（按名字存，勾=已签；已签者仍在原分区显示，划线标注）
-  var SKEY = 'sztrip-sign-v1';
-  var signed = {};
-  try { signed = JSON.parse(localStorage.getItem(SKEY) || '{}') || {}; } catch(e) { signed = {}; }
-  function signCards(){ return [...document.querySelectorAll('#tab-seats .seat-card')]; }
-  // 预置已签的两位（固定事实，不随勾选丢失）
-  signed['港少'] = true;
-  signed['HAO轩'] = true;
-  function renderSign(){
-    var cards = signCards();
-    var nDone = 0;
-    cards.forEach(function(c){
-      var name = c.querySelector('.seat-name').innerText;
-      var isDone = !!signed[name];
-      if (isDone) nDone++;
-      c.classList.toggle('done', isDone);
-    });
-    document.getElementById('sgNum').textContent = nDone + '/' + cards.length;
-    var dl = document.getElementById('doneList');
-    dl.innerHTML = '';
-    var doneCards = cards.filter(function(c){ return c.classList.contains('done'); });
-    if (!doneCards.length) {
-      dl.innerHTML = '<div class="sign-empty">还没有签到的人<br>在名单里点左侧圆钮记录签名</div>';
-      return;
-    }
-    doneCards.forEach(function(c){ dl.appendChild(c.cloneNode(true)); });
+  var saved = null;
+  try { saved = localStorage.getItem(VAULT_KEY); } catch(e) {}
+  if (saved) {
+    document.body.style.opacity = '.6';
+    unlock(saved, function(html){ if (html) render(html); else { document.body.style.opacity = '1'; } });
   }
-  document.addEventListener('click', function(e){
-    var btn = e.target.closest ? e.target.closest('.tick2') : null;
-    if (!btn) return;
-    var card = btn.closest('.seat-card');
-    var name = card.querySelector('.seat-name').innerText;
-    if (signed[name]) delete signed[name]; else signed[name] = true;
-    try { localStorage.setItem(SKEY, JSON.stringify(signed)); } catch(e2) {}
-    renderSign();
-  });
-  // Tab 切换（4 个）
-  document.querySelectorAll('#seatTabs button').forEach(function(b){
-    b.addEventListener('click', function(){
-      document.querySelectorAll('#seatTabs button').forEach(function(x){ x.classList.toggle('on', x === b); });
-      ['nei','tai','unk','done'].forEach(function(k){
-        document.getElementById('seat-' + k).hidden = (b.dataset.seat !== k);
-      });
-    });
-  });
-  renderSign();
-
-  // 导航选择弹窗（地点=搜索模式；交通段=公交规划直链）
-  var mask = document.getElementById('sheetMask');
-  var sheetTitle = document.getElementById('sheetTitle');
-  var navTarget = '', navFrom = '', navTo = '';
-  document.querySelectorAll('[data-nav],[data-from]').forEach(function(el){
-    el.addEventListener('click', function(){
-      navFrom = el.getAttribute('data-from') || '';
-      navTo = el.getAttribute('data-to') || '';
-      if (navFrom) {
-        var fromName = navFrom.split(',')[2] || '';
-        var toName = navTo.split(',')[2] || '';
-        sheetTitle.textContent = '地铁规划 ' + fromName + ' → ' + toName;
+  document.getElementById('go').addEventListener('click', doUnlock);
+  document.getElementById('pw').addEventListener('keydown', function(e){ if (e.key === 'Enter') doUnlock(); });
+  function doUnlock(){
+    var pw = document.getElementById('pw').value;
+    if (!pw) return;
+    var btn = document.getElementById('go');
+    btn.innerHTML = '<span class="spin"></span>解锁中';
+    btn.disabled = true;
+    unlock(pw, function(html){
+      if (html) {
+        try { localStorage.setItem(VAULT_KEY, pw); } catch(e) {}
+        render(html);
       } else {
-        navTarget = el.getAttribute('data-nav');
-        sheetTitle.textContent = '导航到「' + navTarget + '」';
+        btn.innerHTML = '解锁'; btn.disabled = false;
+        document.getElementById('err').innerText = '密码不正确，请重试';
       }
-      mask.classList.add('show');
     });
-  });
-  function closeSheet(){ mask.classList.remove('show'); }
-  document.getElementById('navAmap').addEventListener('click', function(){
-    window.open(navFrom
-      ? 'https://uri.amap.com/navigation?from=' + navFrom + '&to=' + navTo + '&mode=bus&policy=1&src=trip&coordinate=gaode&callnative=0'
-      : 'https://uri.amap.com/search?keyword=' + encodeURIComponent(navTarget), '_blank');
-    closeSheet();
-  });
-  document.getElementById('navBaidu').addEventListener('click', function(){
-    window.open(navFrom
-      ? 'https://api.map.baidu.com/direction?origin=' + encodeURIComponent(navTo ? navFrom.split(',')[2] : '') + '&destination=' + encodeURIComponent(navTo.split(',')[2] || '') + '&mode=transit&region=%E6%B7%B1%E5%9C%B3&output=html&src=web'
-      : 'https://map.baidu.com/?query=' + encodeURIComponent(navTarget), '_blank');
-    closeSheet();
-  });
-  document.getElementById('sheetCancel').addEventListener('click', closeSheet);
-  mask.addEventListener('click', function(e){ if (e.target === mask) closeSheet(); });
+  }
 })();
 </script>
 </body>
