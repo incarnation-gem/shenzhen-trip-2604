@@ -152,12 +152,10 @@
   .seg.sub{position:static;margin:14px 0 10px}
   .tabpane[hidden]{display:none}
   .seat-list{display:grid;gap:10px}
-  .seat-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 15px;
-    display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
-  .seat-av{width:42px;height:42px;border-radius:50%;background:var(--purple-bg);color:var(--purple);
-    font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .seat-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;
+    display:flex;align-items:baseline;justify-content:space-between;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
   .seat-name{font-size:15.5px;font-weight:700}
-  .seat-pos{font-size:13px;color:var(--sub);margin-top:2px}
+  .seat-pos{font-size:14px}
   .seat-pos b{color:var(--purple);font-weight:600}
   .empty{border:1.5px dashed #d5d5da;border-radius:16px;padding:34px 20px;text-align:center;color:var(--sub);font-size:13px;line-height:1.7}
   footer{text-align:center;margin-top:44px;font-size:12px;color:var(--sub)}
@@ -192,7 +190,6 @@
 
   <div class="seg" id="mainTabs">
     <button data-tab="trip" class="on">行程</button>
-    <button data-tab="guide">攻略</button>
     <button data-tab="seats">座位表</button>
   </div>
 
@@ -344,11 +341,6 @@
 
   </section>
 
-  <!-- ============ 攻略 ============ -->
-  <section class="tabpane" id="tab-guide" hidden>
-    <div class="empty" style="margin-top:20px">旅游攻略待补充<br>吃住买推荐与实用信息将放在这里</div>
-  </section>
-
   <!-- ============ 座位表 ============ -->
   <section class="tabpane" id="tab-seats" hidden>
     <div class="seg sub" id="seatTabs">
@@ -357,9 +349,9 @@
     </div>
     <div id="seat-nei">
       <div class="seat-list">
-        <div class="seat-card"><div class="seat-av">独</div><div class="seat-info"><div class="seat-name">独奏</div><div class="seat-pos"><b>P2 区</b></div></div></div>
-        <div class="seat-card"><div class="seat-av">老</div><div class="seat-info"><div class="seat-name">老犬</div><div class="seat-pos"><b>P3 区</b></div></div></div>
-        <div class="seat-card"><div class="seat-av">小</div><div class="seat-info"><div class="seat-name">小土豆</div><div class="seat-pos"><b>VIP2 区 31 排 30 号</b></div></div></div>
+        <div class="seat-card"><span class="seat-name">独奏</span><span class="seat-pos"><b>P2 区</b></span></div>
+        <div class="seat-card"><span class="seat-name">老犬</span><span class="seat-pos"><b>P3 区</b></span></div>
+        <div class="seat-card"><span class="seat-name">小土豆</span><span class="seat-pos"><b>VIP2 区 31 排 30 号</b></span></div>
       </div>
     </div>
     <div id="seat-tai" hidden>
@@ -446,7 +438,7 @@
     document.querySelectorAll('#mainTabs button').forEach(function(b){
       b.classList.toggle('on', b.dataset.tab === name);
     });
-    ['trip','guide','seats'].forEach(function(t){
+    ['trip','seats'].forEach(function(t){
       document.getElementById('tab-' + t).hidden = (t !== name);
     });
     window.scrollTo({ top: 0 });
