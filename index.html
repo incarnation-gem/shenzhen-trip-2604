@@ -61,7 +61,7 @@
     font-family:inherit;-webkit-tap-highlight-color:transparent}
 
   /* 打卡进度 */
-  .progress{position:sticky;top:8px;z-index:50;display:flex;align-items:center;gap:10px;
+  .progress{position:sticky;top:62px;z-index:50;display:flex;align-items:center;gap:10px;
     background:rgba(255,255,255,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
     border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin:18px 0 4px;
     box-shadow:0 1px 3px rgba(0,0,0,.05)}
@@ -145,6 +145,21 @@
   .tag{font-size:11px;padding:3px 9px;border-radius:999px;background:var(--bg);color:var(--sub)}
   .tag.f{color:var(--orange);background:var(--orange-bg)}
 
+.seg{display:flex;background:#e8e8ed;border-radius:10px;padding:2.5px;margin:18px 0 4px;position:sticky;top:8px;z-index:40}
+  .seg button{flex:1;font-size:13.5px;font-weight:600;color:var(--sub);background:none;border:none;
+    border-radius:8px;padding:8px 0;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
+  .seg button.on{background:#fff;color:var(--txt);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+  .seg.sub{position:static;margin:14px 0 10px}
+  .tabpane[hidden]{display:none}
+  .seat-list{display:grid;gap:10px}
+  .seat-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 15px;
+    display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .seat-av{width:42px;height:42px;border-radius:50%;background:var(--purple-bg);color:var(--purple);
+    font-size:17px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .seat-name{font-size:15.5px;font-weight:700}
+  .seat-pos{font-size:13px;color:var(--sub);margin-top:2px}
+  .seat-pos b{color:var(--purple);font-weight:600}
+  .empty{border:1.5px dashed #d5d5da;border-radius:16px;padding:34px 20px;text-align:center;color:var(--sub);font-size:13px;line-height:1.7}
   footer{text-align:center;margin-top:44px;font-size:12px;color:var(--sub)}
   footer .heart{color:var(--purple)}
 
@@ -174,6 +189,15 @@
     <div class="badge">I AM GLORIA · 世界巡回演唱会</div>
     <h1>深圳 3 天 2 晚<small>2026.10.04-2026.10.06</small></h1>
   </header>
+
+  <div class="seg" id="mainTabs">
+    <button data-tab="trip" class="on">行程</button>
+    <button data-tab="guide">攻略</button>
+    <button data-tab="seats">座位表</button>
+  </div>
+
+  <!-- ============ 行程 ============ -->
+  <section class="tabpane" id="tab-trip">
 
   <!-- 快览 -->
   <section class="quick">
@@ -318,6 +342,31 @@
     </div>
   </section>
 
+  </section>
+
+  <!-- ============ 攻略 ============ -->
+  <section class="tabpane" id="tab-guide" hidden>
+    <div class="empty" style="margin-top:20px">旅游攻略待补充<br>吃住买推荐与实用信息将放在这里</div>
+  </section>
+
+  <!-- ============ 座位表 ============ -->
+  <section class="tabpane" id="tab-seats" hidden>
+    <div class="seg sub" id="seatTabs">
+      <button data-seat="nei" class="on">内场</button>
+      <button data-seat="tai">看台</button>
+    </div>
+    <div id="seat-nei">
+      <div class="seat-list">
+        <div class="empty">内场名单待补充<br>把朋友的名字和座位号告诉我 马上填进来</div>
+      </div>
+    </div>
+    <div id="seat-tai" hidden>
+      <div class="seat-list">
+        <div class="empty">看台名单待补充</div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     深圳见 · <span class="heart">GLORIA</span> · 10.04 – 10.06
   </footer>
@@ -389,6 +438,27 @@
   });
 
   update();
+
+  // Tab 切换
+  function switchTab(name){
+    document.querySelectorAll('#mainTabs button').forEach(function(b){
+      b.classList.toggle('on', b.dataset.tab === name);
+    });
+    ['trip','guide','seats'].forEach(function(t){
+      document.getElementById('tab-' + t).hidden = (t !== name);
+    });
+    window.scrollTo({ top: 0 });
+  }
+  document.querySelectorAll('#mainTabs button').forEach(function(b){
+    b.addEventListener('click', function(){ switchTab(b.dataset.tab); });
+  });
+  document.querySelectorAll('#seatTabs button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('#seatTabs button').forEach(function(x){ x.classList.toggle('on', x === b); });
+      document.getElementById('seat-nei').hidden = (b.dataset.seat !== 'nei');
+      document.getElementById('seat-tai').hidden = (b.dataset.seat !== 'tai');
+    });
+  });
 
   // 导航选择弹窗（地点=搜索模式；交通段=公交规划直链）
   var mask = document.getElementById('sheetMask');
