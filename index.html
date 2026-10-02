@@ -152,8 +152,16 @@
   .seg.sub{position:static;margin:14px 0 10px}
   .tabpane[hidden]{display:none}
   .seat-list{display:grid;gap:10px}
-  .seat-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;
+  .seat-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px 12px 48px;
     display:flex;align-items:baseline;justify-content:space-between;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .seat-card .tick2{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:24px;height:24px;
+    border-radius:50%;border:1.5px solid var(--line);background:var(--card);cursor:pointer;padding:0;
+    display:flex;align-items:center;justify-content:center;font-size:13px;color:transparent;
+    -webkit-appearance:none;transition:all .2s}
+  .seat-card .tick2:active{transform:translateY(-50%) scale(.85)}
+  .seat-card.done .tick2{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
+  .seat-card.done .seat-name{color:var(--sub);text-decoration:line-through}
+  .seat-card.done .seat-pos{opacity:.4}
   .seat-name{font-size:15.5px;font-weight:700}
   .seat-pos{font-size:14px}
   .seat-pos b{color:var(--purple);font-weight:600}
@@ -362,16 +370,18 @@
 
   <!-- ============ 座位表 ============ -->
   <section class="tabpane" id="tab-seats" hidden>
+    <div class="sign-head"><h4>签名进度</h4><span class="sg-num" id="sgNum"></span></div>
     <div class="seg sub" id="seatTabs">
       <button data-seat="nei" class="on">内场</button>
       <button data-seat="tai">看台</button>
       <button data-seat="unk">未知</button>
+      <button data-seat="done">已签</button>
     </div>
     <div id="seat-nei">
       <div class="seat-list">
-        <div class="seat-card"><span class="seat-name">小土豆</span><span class="seat-pos"><b>VIP2 区 31 排 30 座</b></span></div>
-        <div class="seat-card"><span class="seat-name">小鱼仔</span><span class="seat-pos"><b>VIP2 区 31 排 31 座</b></span></div>
-        <div class="seat-card"><span class="seat-name">老犬</span><span class="seat-pos"><b>VIP1 区 12 排 12 座</b></span></div>
+        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">小土豆</span><span class="seat-pos"><b>VIP2 区 31 排 30 座</b></span></div>
+        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">小鱼仔</span><span class="seat-pos"><b>VIP2 区 31 排 31 座</b></span></div>
+        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">老犬</span><span class="seat-pos"><b>VIP1 区 12 排 12 座</b></span></div>
       </div>
     </div>
     <div id="seat-unk" hidden>
@@ -379,22 +389,19 @@
         <div class="empty">待确认位置的名单放这里</div>
       </div>
     </div>
+    <div id="seat-done" hidden>
+      <div class="seat-list" id="doneList"></div>
+    </div>
     <div id="seat-tai" hidden>
       <div class="seat-list">
-        <div class="seat-card"><span class="seat-name">独奏</span><span class="seat-pos"><b>304 区 2 排 16 座</b></span></div>
-        <div class="seat-card"><span class="seat-name">小鱼</span><span class="seat-pos"><b>124 区 10 排 4 座</b></span></div>
-        <div class="seat-card"><span class="seat-name">小Lulu唯懿</span><span class="seat-pos"><b>124 区</b></span></div>
-        <div class="seat-card"><span class="seat-name">五花肉</span><span class="seat-pos"><b>125 区 23 排 31 座</b></span></div>
-        <div class="seat-card"><span class="seat-name">海南小孩姐</span><span class="seat-pos"><b>125 或 126 区</b></span></div>
+        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">独奏</span><span class="seat-pos"><b>304 区 2 排 16 座</b></span></div>
+        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">小鱼</span><span class="seat-pos"><b>124 区 10 排 4 座</b></span></div>
+        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">小Lulu唯懿</span><span class="seat-pos"><b>124 区</b></span></div>
+        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">五花肉</span><span class="seat-pos"><b>125 区 23 排 31 座</b></span></div>
+        <div class="seat-card"><button class="tick2" aria-label="签名打卡">&#10003;</button><span class="seat-name">海南小孩姐</span><span class="seat-pos"><b>125 或 126 区</b></span></div>
       </div>
     </div>
-    <div class="sign-head"><h4>签名进度</h4><span class="sg-num" id="sgNum"></span></div>
-    <div class="seg mini" id="signTabs">
-      <button data-sg="todo" class="on">未签</button>
-      <button data-sg="done">已签</button>
-    </div>
-    <div id="sg-todo" class="sign-list"></div>
-    <div id="sg-done" class="sign-list" hidden></div>
+
   </section>
 
   <footer>
@@ -482,54 +489,46 @@
   document.querySelectorAll('#mainTabs button').forEach(function(b){
     b.addEventListener('click', function(){ switchTab(b.dataset.tab); });
   });
-  document.querySelectorAll('#seatTabs button').forEach(function(b){
-    b.addEventListener('click', function(){
-      document.querySelectorAll('#seatTabs button').forEach(function(x){ x.classList.toggle('on', x === b); });
-      ['nei','tai','unk'].forEach(function(k){
-        document.getElementById('seat-' + k).hidden = (b.dataset.seat !== k);
-      });
-    });
-  });
-
-  // 签名进度
-  var SIGN_PEOPLE = [
-    ['小土豆','VIP2'],['小鱼仔','VIP2'],['老犬','VIP1'],['独奏','304'],
-    ['小鱼','124'],['小Lulu唯懿','124'],['五花肉','125'],['海南小孩姐','125/126']
-  ];
+  // 签名进度（按名字存，勾=已签；已签者仍在原分区显示，划线标注）
   var SKEY = 'sztrip-sign-v1';
   var signed = {};
   try { signed = JSON.parse(localStorage.getItem(SKEY) || '{}') || {}; } catch(e) { signed = {}; }
+  function signCards(){ return [...document.querySelectorAll('#tab-seats .seat-card')]; }
   function renderSign(){
-    var todo = document.getElementById('sg-todo'), done = document.getElementById('sg-done');
-    todo.innerHTML = ''; done.innerHTML = '';
+    var cards = signCards();
     var nDone = 0;
-    SIGN_PEOPLE.forEach(function(p, i){
-      var isDone = !!signed['s' + i];
+    cards.forEach(function(c){
+      var name = c.querySelector('.seat-name').innerText;
+      var isDone = !!signed[name];
       if (isDone) nDone++;
-      var card = document.createElement('div');
-      card.className = 'sign-card' + (isDone ? ' done' : '');
-      var pos = document.createElement('span'); pos.className = 'sign-pos'; pos.textContent = p[1];
-      var name = document.createElement('span'); name.className = 'sign-name'; name.textContent = p[0];
-      var btn = document.createElement('button'); btn.className = 'tick2'; btn.innerHTML = '&#10003;';
-      btn.setAttribute('aria-label', '签名打卡');
-      btn.addEventListener('click', function(){
-        var k = 's' + i;
-        if (signed[k]) delete signed[k]; else signed[k] = true;
-        try { localStorage.setItem(SKEY, JSON.stringify(signed)); } catch(e) {}
-        renderSign();
-      });
-      card.appendChild(btn); card.appendChild(name); card.appendChild(pos);
-      (isDone ? done : todo).appendChild(card);
+      c.classList.toggle('done', isDone);
     });
-    document.getElementById('sgNum').textContent = nDone + '/' + SIGN_PEOPLE.length;
-    if (!todo.children.length) todo.innerHTML = '<div class="sign-empty">全部签完啦</div>';
-    if (!done.children.length) done.innerHTML = '<div class="sign-empty">还没有签到的<br>找到人签名后点左侧圆钮</div>';
+    document.getElementById('sgNum').textContent = nDone + '/' + cards.length;
+    var dl = document.getElementById('doneList');
+    dl.innerHTML = '';
+    var doneCards = cards.filter(function(c){ return c.classList.contains('done'); });
+    if (!doneCards.length) {
+      dl.innerHTML = '<div class="sign-empty">还没有签到的人<br>在名单里点左侧圆钮记录签名</div>';
+      return;
+    }
+    doneCards.forEach(function(c){ dl.appendChild(c.cloneNode(true)); });
   }
-  document.querySelectorAll('#signTabs button').forEach(function(b){
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest ? e.target.closest('.tick2') : null;
+    if (!btn) return;
+    var card = btn.closest('.seat-card');
+    var name = card.querySelector('.seat-name').innerText;
+    if (signed[name]) delete signed[name]; else signed[name] = true;
+    try { localStorage.setItem(SKEY, JSON.stringify(signed)); } catch(e2) {}
+    renderSign();
+  });
+  // Tab 切换（4 个）
+  document.querySelectorAll('#seatTabs button').forEach(function(b){
     b.addEventListener('click', function(){
-      document.querySelectorAll('#signTabs button').forEach(function(x){ x.classList.toggle('on', x === b); });
-      document.getElementById('sg-todo').hidden = (b.dataset.sg !== 'todo');
-      document.getElementById('sg-done').hidden = (b.dataset.sg !== 'done');
+      document.querySelectorAll('#seatTabs button').forEach(function(x){ x.classList.toggle('on', x === b); });
+      ['nei','tai','unk','done'].forEach(function(k){
+        document.getElementById('seat-' + k).hidden = (b.dataset.seat !== k);
+      });
     });
   });
   renderSign();
