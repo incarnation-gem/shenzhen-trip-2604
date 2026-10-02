@@ -502,7 +502,7 @@
   var signed = {};
   try { signed = JSON.parse(localStorage.getItem(SKEY) || '{}') || {}; } catch(e) { signed = {}; }
   function signCards(){ return [...document.querySelectorAll('#tab-seats .seat-card')]; }
-  // 9.27 已签的两位（固定事实，不随勾选丢失）
+  // 预置已签的两位（固定事实，不随勾选丢失）
   signed['港少'] = true;
   signed['HAO轩'] = true;
   function renderSign(){
