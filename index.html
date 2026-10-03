@@ -42,7 +42,7 @@
   var VAULT_KEY = 'sztrip-pw-v1';
   var b64 = function(s){ return Uint8Array.from(atob(s), function(c){ return c.charCodeAt(0); }); };
   function unlock(pw, cb){
-    fetch('vault.dat?v=' + '16').then(function(r){ return r.text(); }).then(function(t){
+    fetch('vault.dat?v=' + '17').then(function(r){ return r.text(); }).then(function(t){
       var d = JSON.parse(t);
       return crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey'])
         .then(function(ki){
